@@ -287,8 +287,11 @@ class illuminants(object):
 		The illuminants are not actually read on initialization. They are
 		read only if demanded with the get_illuminant method but where they
 		are, they are kept in memory to avoid reading them twice."""
-		
-		self.illuminants = dict((os.path.splitext(filename)[0], None) for filename in os.listdir(directory) if os.path.splitext(filename)[1].upper() == ".TXT")
+		self.illuminants = {}
+		for filename in os.listdir(directory):
+			key, ext = os.path.splitext(filename)
+			if ext.upper() == ".TXT":
+				self.illuminants[key.upper()] = None
 	
 	
 	######################################################################
@@ -371,10 +374,13 @@ class observers(object):
 		The observers are not actually read on initialization. They are
 		read only if demanded with the get_observer method but where they
 		are, they are kept in memory to avoid reading them twice."""
-		
-		self.observers = dict((os.path.splitext(filename)[0], None) for filename in os.listdir(directory) if os.path.splitext(filename)[1].upper() == ".TXT")
-	
-	
+		self.observers = {}
+		for filename in os.listdir(directory):
+			key, ext = os.path.splitext(filename)
+			if ext.upper() == ".TXT":
+				self.observers[key.upper()] = None
+
+
 	######################################################################
 	#                                                                    #
 	# get_observer_names                                                 #
