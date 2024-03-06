@@ -361,9 +361,9 @@ class random_errors_dialog(wx.Dialog):
 		# Add all plots to the notebook so we don't have to hide them.
 		# Hiding them and then showing them could create issues on some
 		# operating systems.
-		for data_type, plot in self.plots.items():
+		for data_type, plot in list(self.plots.items()):
 			self.result_notebook.AddPage(plot, data_holder.DATA_TYPE_NAMES[data_type])
-		self.shown_plots = self.plots.values()
+		self.shown_plots = list(self.plots.values())
 		
 		data_box_sizer = wx.StaticBoxSizer(data_static_box, wx.VERTICAL)
 		
@@ -1030,7 +1030,7 @@ class random_errors_dialog(wx.Dialog):
 				self.result_notebook.GetCurrentPage().save_to_file(filename)
 			except KeyError:
 				wx.MessageBox("Invalid file extension.", "Error", wx.ICON_ERROR|wx.OK)
-			except IOError, error:
+			except IOError as error:
 				wx.MessageBox("Exportation failed.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 			
 			self.SetCursor(wx.StockCursor(wx.CURSOR_DEFAULT))
@@ -1184,7 +1184,7 @@ class random_errors_dialog(wx.Dialog):
 	def reset(self):
 		"""Reset the simulation"""
 		
-		for plot in self.plots.values():
+		for plot in list(self.plots.values()):
 			plot.reset()
 		self.save_button.Disable()
 		self.save_all_button.Disable()
@@ -1203,11 +1203,11 @@ class random_errors_dialog(wx.Dialog):
 		polarization = self.analyser.get_polarization()
 		
 		if polarization in S_or_P:
-			for box in self.data_type_boxes.values():
+			for box in list(self.data_type_boxes.values()):
 				box.Enable()
 		else:
 			modified = False
-			for data_type, box in self.data_type_boxes.items():
+			for data_type, box in list(self.data_type_boxes.items()):
 				if data_type in data_holder.DISPERSIVE_DATA_TYPES:
 					if box.GetValue():
 						box.SetValue(False)
@@ -1228,13 +1228,13 @@ class random_errors_dialog(wx.Dialog):
 	def update_data_types(self):
 		"""Show the tabs corresponding to the choosen data types"""
 		
-		data_types = [data_type for data_type, box in self.data_type_boxes.items() if box.GetValue()]
+		data_types = [data_type for data_type, box in list(self.data_type_boxes.items()) if box.GetValue()]
 		self.analyser.set_data_types(data_types)
 		
 		data_types = self.analyser.get_data_types()
 		
 		position = 0
-		for data_type, plot in self.plots.items():
+		for data_type, plot in list(self.plots.items()):
 			if data_type in data_types:
 				if plot not in self.shown_plots:
 					self.result_notebook.InsertPage(position, plot, data_holder.DATA_TYPE_NAMES[data_type])
@@ -1365,7 +1365,7 @@ class random_errors_dialog(wx.Dialog):
 		
 		Disable all controls (except the stop button) during a simulation."""
 		
-		for box in self.data_type_boxes.values():
+		for box in list(self.data_type_boxes.values()):
 			box.Disable()
 		self.angle_box.Disable()
 		self.s_polarized_button.Disable()

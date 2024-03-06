@@ -27,7 +27,7 @@
 import sys
 
 
-print ""
+print("")
 
 
 # Get the list of tests to execute. If no test is provided, execute all tests.
@@ -40,9 +40,9 @@ if tests == []:
 if "color" in tests:
 	tests.remove("color")
 	
-	print ""
-	print "========== color tests =========="
-	print ""
+	print("")
+	print("========== color tests ==========")
+	print("")
 
 	import color
 	import random
@@ -81,18 +81,18 @@ if "color" in tests:
 				result = "An error occured"
 			else:
 				result = "OK"
-			print "%s -> %s -> %s: %s" % (color_space_names[color_space_1], color_space_names[color_space_2], color_space_names[color_space_1], result)
+			print("%s -> %s -> %s: %s" % (color_space_names[color_space_1], color_space_names[color_space_2], color_space_names[color_space_1], result))
 	
-	print ""
+	print("")
 	
 	# XYZ -> RGB and RGB -> XYZ
 	RGB, error = color.XYZ_to_RGB(XYZ)
 	XYZ_inv = color.RGB_to_XYZ(RGB)
-	if error: print "This color cannot be represented in RGB, expect an error."
-	print "XYZ -> RGB: [%.3f, %.3f, %.3f] -> [%.3f, %.3f, %.3f]" % (XYZ[0], XYZ[1], XYZ[2], RGB[0], RGB[1], RGB[2])
-	print "RGB -> XYZ: [%.3f, %.3f, %.3f] -> [%.3f, %.3f, %.3f]" % (RGB[0], RGB[1], RGB[2], XYZ_inv[0], XYZ_inv[1], XYZ_inv[2])
+	if error: print("This color cannot be represented in RGB, expect an error.")
+	print("XYZ -> RGB: [%.3f, %.3f, %.3f] -> [%.3f, %.3f, %.3f]" % (XYZ[0], XYZ[1], XYZ[2], RGB[0], RGB[1], RGB[2]))
+	print("RGB -> XYZ: [%.3f, %.3f, %.3f] -> [%.3f, %.3f, %.3f]" % (RGB[0], RGB[1], RGB[2], XYZ_inv[0], XYZ_inv[1], XYZ_inv[2]))
 	
-	print ""
+	print("")
 	
 	
 	# Test color difference calculations according to the examples found in
@@ -100,7 +100,7 @@ if "color" in tests:
 	#   Colour-Difference Formula: CIEDE2000", Color Research and
 	#   Application, Volume 26, Number 5, October 2001, pp. 340-350.
 	
-	print "Testing CIELABDE2000 implementation"
+	print("Testing CIELABDE2000 implementation")
 	
 	pairs = [[[19.4100,   28.4100,   11.5766], [19.5525,   28.6400,   10.5791  ], 1.2644],
 	         [[22.4800,   31.6000,   38.4800], [22.5833,   31.3700,   36.7901  ], 1.2630],
@@ -121,27 +121,27 @@ if "color" in tests:
 		diff = abs(Delta_E_calculated-Delta_E_tabulated)
 		if diff < 1e-3: result = "OK"
 		else: result = "Error (got %.4f instead of %.4f)" % (Delta_E_calculated, Delta_E_tabulated)
-		print "Pair %i: %s" % (i+1, result)
+		print("Pair %i: %s" % (i+1, result))
 	
 
 # Test the unit conversion.
 if "units" in tests:
 	tests.remove("units")
 	
-	print ""
-	print "========== units tests =========="
-	print ""
+	print("")
+	print("========== units tests ==========")
+	print("")
 	
 	import units
 	
 	for unit in units.WAVELENGTH_UNITS:
 		converted = units.CONVERT_FROM_METERS_TO_UNITS[unit](500e-9)
 		converted_back = units.CONVERT_FROM_UNITS_TO_METERS[unit](converted)
-		print "500 nm =", converted, units.ABBREVIATIONS[unit], "=", converted_back, "m"
+		print("500 nm =", converted, units.ABBREVIATIONS[unit], "=", converted_back, "m")
 
 
 # Verify that all tests were executed
 if tests:
-	print ""
-	print "Unknown or duplicate tests were ignored."
-	print ""
+	print("")
+	print("Unknown or duplicate tests were ignored.")
+	print("")

@@ -28,7 +28,7 @@
 
 
 # REMOVE when Python 3.0 will be out.
-from __future__ import division
+
 
 import sys
 import os.path
@@ -108,7 +108,7 @@ max_marker_size = 100
 
 # The canvas size if limited to C longs. To allow markers, it is
 # reduced by the maximum marker size.
-maxint = sys.maxint - max_marker_size
+maxint = sys.maxsize - max_marker_size
 minint = -maxint - 1 + max_marker_size
 
 # Zero and negative value cannot be handled correctly in log scale. The
@@ -755,8 +755,8 @@ class plot_curve(object):
 			if needed_points > self.size:
 				new_size = int(math.ceil(1.10*needed_points))
 				added_size = new_size-self.size
-				self.x += array.array("d", range(added_size))
-				self.y += array.array("d", range(added_size))
+				self.x += array.array("d", list(range(added_size)))
+				self.y += array.array("d", list(range(added_size)))
 				
 				self.size = new_size
 		
@@ -812,8 +812,8 @@ class plot_curve(object):
 			if nb_new_points > self.size:
 				new_size = int(math.ceil(1.10*nb_new_points))
 				added_size = new_size-self.size
-				self.x += array.array("d", range(added_size))
-				self.y += array.array("d", range(added_size))
+				self.x += array.array("d", list(range(added_size)))
+				self.y += array.array("d", list(range(added_size)))
 				
 				self.size = new_size
 		

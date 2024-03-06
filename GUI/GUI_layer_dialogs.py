@@ -750,7 +750,7 @@ class simple_layer_dialog(layer_dialog):
 		try:
 			material_nb = self.filter.get_material_nb(material_name)
 			material = self.filter.get_material(material_nb)
-		except materials.material_error, error:
+		except materials.material_error as error:
 			wx.MessageBox("This material cannot be used.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 			
 			self.material_box.SetFocus()
@@ -1041,7 +1041,7 @@ class import_layer_dialog(layer_dialog):
 		
 		try:
 			self.filter.add_graded_layer(material_name, profile, thickness, position, side)
-		except graded.grading_error, error:
+		except graded.grading_error as error:
 			raise import_layer_error("Improper grading (%s)" % error.value)
 
 

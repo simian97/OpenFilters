@@ -525,8 +525,8 @@ class optimization_steps(optimization_refinement):
 		# number of steps, keep all steps for the moment. Otherwise,
 		# select the highest ones.
 		if nb_steps_up + nb_steps_down <= self.nb_steps:
-			self.selected_steps_up = range(nb_steps_up)
-			self.selected_steps_down = range(nb_steps_down)
+			self.selected_steps_up = list(range(nb_steps_up))
+			self.selected_steps_down = list(range(nb_steps_down))
 		else:
 			step_up_nb = 0
 			step_down_nb = 0

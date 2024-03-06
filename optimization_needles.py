@@ -630,9 +630,9 @@ class optimization_needles(optimization_refinement):
 		# If the number of detected needles is larger than the maximum
 		# number of needles, limit the list of selected needles.
 		if len(self.needles) > self.nb_needles:
-			self.selected_needles = range(self.nb_needles)
+			self.selected_needles = list(range(self.nb_needles))
 		else:
-			self.selected_needles = range(len(self.needles))
+			self.selected_needles = list(range(len(self.needles)))
 		
 		# Remove needles whose dMF values are not small enough compared
 		# to the smallest dMF value.

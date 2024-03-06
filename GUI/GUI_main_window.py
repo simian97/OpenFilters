@@ -117,7 +117,7 @@ project_wildcard = "OpenFilters projects (*.ofp)|*.ofp|"\
 
 # Constants that represent what to update when a update event is
 # called.
-UPDATE_ALL = sys.maxint
+UPDATE_ALL = sys.maxsize
 UPDATE_MENU = 1
 UPDATE_STATUS_BAR = 2
 UPDATE_CURSOR = 4
@@ -1440,7 +1440,7 @@ class main_window(wx.Frame):
 			material_catalog = self.get_material_catalog()
 			try:
 				self.project = project.read_project(filename, material_catalog)
-			except (project.project_error, optical_filter.filter_error, targets.target_error, materials.material_error), error:
+			except (project.project_error, optical_filter.filter_error, targets.target_error, materials.material_error) as error:
 				if filename in self.recently_opened_projects:
 					self.recently_opened_projects.remove(filename)
 				wx.MessageBox("An error occured while opening the project.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
@@ -1578,7 +1578,7 @@ class main_window(wx.Frame):
 		# Verify that the file still exist.
 		try:
 			saved_version = project.read_project(self.project_filename)
-		except (project.project_error, optical_filter.filter_error, materials.material_error), error:
+		except (project.project_error, optical_filter.filter_error, materials.material_error) as error:
 			wx.MessageBox("It is impossible to reopen the project.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 			return
 		
@@ -1661,10 +1661,10 @@ class main_window(wx.Frame):
 		
 		try:
 			nb = self.project.add_filter()
-		except materials.material_error, error:
+		except materials.material_error as error:
 			wx.MessageBox("It is impossible to create a new filter because there is a problem with one of the default materials.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 			return
-		except optical_filter.filter_error, error:
+		except optical_filter.filter_error as error:
 			wx.MessageBox("It is impossible to create a new filter.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 			return
 		
@@ -1769,7 +1769,7 @@ class main_window(wx.Frame):
 		if answer == wx.ID_OK:
 			try:
 				target = window.get_target()
-			except targets.target_error, error:
+			except targets.target_error as error:
 				wx.MessageBox("Error while reading the target.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 		
 		window.Destroy()
@@ -1982,7 +1982,7 @@ class main_window(wx.Frame):
 		if answer == wx.ID_OK:
 			try:
 				window.apply()
-			except import_layer_error, error:
+			except import_layer_error as error:
 				wx.MessageBox("Error while importing layer.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 			else:
 				self.filter_grid.reset_filter(self.selected_filter_nb)
@@ -2297,7 +2297,7 @@ class main_window(wx.Frame):
 			
 			try:
 				export.export_results_to_text(filename, data)
-			except IOError, error:
+			except IOError as error:
 				wx.MessageBox("Exportation failed.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 			
 			self.SetCursor(wx.StockCursor(wx.CURSOR_DEFAULT))
@@ -2328,7 +2328,7 @@ class main_window(wx.Frame):
 				self.pages[selected_page_nb].save_to_file(filename)
 			except KeyError:
 				wx.MessageBox("Invalid file extension.", "Error", wx.ICON_ERROR|wx.OK)
-			except IOError, error:
+			except IOError as error:
 				wx.MessageBox("Exportation failed.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 			
 			self.SetCursor(wx.StockCursor(wx.CURSOR_DEFAULT))

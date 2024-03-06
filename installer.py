@@ -121,11 +121,11 @@ script.write("\tVar /GLOBAL UNINSTALLER\n")
 script.write("\tVar /GLOBAL INSTALLED_VERSION\n")
 script.write("\tVar /GLOBAL COMPARISON\n")
  
-script.write("\tReadRegStr $UNINSTALLER HKLM \"Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenFilters\" \"UninstallString\"\n")
+script.write("\tReadRegStr $UNINSTALLER HKLM \"Software\Microsoft\Windows\CurrentVersion\\Uninstall\OpenFilters\" \"UninstallString\"\n")
 script.write("\tStrCmp $UNINSTALLER \"\" done\n")
 script.write("\t\n")
 
-script.write("\tReadRegStr $INSTALLED_VERSION HKLM \"Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenFilters\" \"DisplayVersion\"\n")
+script.write("\tReadRegStr $INSTALLED_VERSION HKLM \"Software\Microsoft\Windows\CurrentVersion\\Uninstall\OpenFilters\" \"DisplayVersion\"\n")
 script.write("\tStrCmp $INSTALLED_VERSION \"\" older_version\n")
 script.write("\t${VersionCompare} $INSTALLED_VERSION ${VERSION} $COMPARISON\n")
 script.write("\tStrCmp $COMPARISON \"0\" same_version\n")
@@ -197,11 +197,11 @@ script.write("\tWriteRegStr HKLM SOFTWARE\OpenFilters \"Install_Dir\" \"$INSTDIR
 script.write("\t\n")
 
 # Write the uninstall keys for Windows.
-script.write("\tWriteRegStr HKLM \"Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenFilters\" \"DisplayName\" \"OpenFilters\"\n")
-script.write("\tWriteRegStr HKLM \"Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenFilters\" \"DisplayVersion\" \"${VERSION}\"\n")
-script.write("\tWriteRegStr HKLM \"Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenFilters\" \"UninstallString\" \'\"$INSTDIR\uninstall.exe\"\'\n")
-script.write("\tWriteRegDWORD HKLM \"Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenFilters\" \"NoModify\" 1\n")
-script.write("\tWriteRegDWORD HKLM \"Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenFilters\" \"NoRepair\" 1\n")
+script.write("\tWriteRegStr HKLM \"Software\Microsoft\Windows\CurrentVersion\\Uninstall\OpenFilters\" \"DisplayName\" \"OpenFilters\"\n")
+script.write("\tWriteRegStr HKLM \"Software\Microsoft\Windows\CurrentVersion\\Uninstall\OpenFilters\" \"DisplayVersion\" \"${VERSION}\"\n")
+script.write("\tWriteRegStr HKLM \"Software\Microsoft\Windows\CurrentVersion\\Uninstall\OpenFilters\" \"UninstallString\" \'\"$INSTDIR\\uninstall.exe\"\'\n")
+script.write("\tWriteRegDWORD HKLM \"Software\Microsoft\Windows\CurrentVersion\\Uninstall\OpenFilters\" \"NoModify\" 1\n")
+script.write("\tWriteRegDWORD HKLM \"Software\Microsoft\Windows\CurrentVersion\\Uninstall\OpenFilters\" \"NoRepair\" 1\n")
 script.write("\t\n")
 script.write("\tWriteUninstaller \"uninstall.exe\"\n")
 script.write("\t\n")
@@ -246,7 +246,7 @@ script.write("\n")
 script.write("Section \"Start Menu Shortcuts\"\n")
 script.write("\t\n")
 script.write("\tCreateDirectory \"$SMPROGRAMS\OpenFilters\"\n")
-script.write("\tCreateShortCut \"$SMPROGRAMS\OpenFilters\Uninstall.lnk\" \"$INSTDIR\uninstall.exe\" \"\" \"$INSTDIR\uninstall.exe\" 0\n")
+script.write("\tCreateShortCut \"$SMPROGRAMS\OpenFilters\\Uninstall.lnk\" \"$INSTDIR\\uninstall.exe\" \"\" \"$INSTDIR\\uninstall.exe\" 0\n")
 script.write("\tCreateShortCut \"$SMPROGRAMS\OpenFilters\OpenFilters.lnk\" \"$INSTDIR\OpenFilters.exe\" \"\" \"$INSTDIR\OpenFilters.exe\" 0\n")
 script.write("\tCreateShortCut \"$SMPROGRAMS\OpenFilters\Release notes.lnk\" \"$INSTDIR\Release notes.txt\" \"\" \"$INSTDIR\Release notes.txt\" 0\n")
 script.write("\tCreateShortCut \"$SMPROGRAMS\OpenFilters\gpl.lnk\" \"$INSTDIR\gpl.txt\" \"\" \"$INSTDIR\gpl.txt\" 0\n")
@@ -290,16 +290,16 @@ for i in range(len(executable_directories)-1, -1, -1):
 	script.write("\t\n")
 
 # Remove registry keys.
-script.write("\tDeleteRegKey HKLM \"Software\Microsoft\Windows\CurrentVersion\Uninstall\OpenFilters\"\n")
+script.write("\tDeleteRegKey HKLM \"Software\Microsoft\Windows\CurrentVersion\\Uninstall\OpenFilters\"\n")
 script.write("\tDeleteRegKey HKLM SOFTWARE\OpenFilters\n")
 script.write("\t\n")
 
 # Remove the uninstaller.
-script.write("\tDelete $INSTDIR\uninstall.exe\n")
+script.write("\tDelete $INSTDIR\\uninstall.exe\n")
 script.write("\t\n")
 
 # Remove shortcuts, if any.
-script.write("\tDelete \"$SMPROGRAMS\OpenFilters\Uninstall.lnk\"\n")
+script.write("\tDelete \"$SMPROGRAMS\OpenFilters\\Uninstall.lnk\"\n")
 script.write("\tDelete \"$SMPROGRAMS\OpenFilters\OpenFilters.lnk\"\n")
 script.write("\tDelete \"$SMPROGRAMS\OpenFilters\Release notes.lnk\"\n")
 script.write("\tDelete \"$SMPROGRAMS\OpenFilters\gpl.lnk\"\n")

@@ -24,7 +24,7 @@
 
 
 # REMOVE when Python 3.0 will be out.
-from __future__ import division
+
 
 import wx
 

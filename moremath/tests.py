@@ -32,14 +32,14 @@ import time
 import moremath
 
 
-print ""
+print("")
 
 
 if moremath.get_moremath_dll_import_success():
-	print "Working with the dll."
+	print("Working with the dll.")
 else:
-	print "Working with Python versions."
-print ""
+	print("Working with Python versions.")
+print("")
 
 
 # Get the list of tests to execute. If no test is provided, execute all tests.
@@ -52,9 +52,9 @@ if tests == []:
 if "Gauss_Jordan" in tests:
 	tests.remove("Gauss_Jordan")
 	
-	print ""
-	print "========== Gauss_Jordan tests =========="
-	print ""
+	print("")
+	print("========== Gauss_Jordan tests ==========")
+	print("")
 	
 	from moremath import Gauss_Jordan
 	
@@ -64,10 +64,10 @@ if "Gauss_Jordan" in tests:
 	from moremath import random_system
 	
 	# Make a linear system.
-	print "----- Square system: -----"
+	print("----- Square system: -----")
 	m = 100
 	r = 100
-	print "Creating a %i by %i system of full rank." % (m, m)
+	print("Creating a %i by %i system of full rank." % (m, m))
 	A, b = random_system.random_system(m, m, r, 0)
 	
 	# Solve the system and calculate the inverse matrix using Gauss-
@@ -83,13 +83,13 @@ if "Gauss_Jordan" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the results.
-	print "solved in %.4f s." % (end-start)
-	print "norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 	
-	print ""
+	print("")
 	
 	# Reduce the system.
-	print "----- Reduced square system: -----"
+	print("----- Reduced square system: -----")
 	use = [1]*m
 	for i in range(5):
 		use[random.randint(0, m-1)] = 0
@@ -114,18 +114,18 @@ if "Gauss_Jordan" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the verifications.
-	print "solved in %.4f s." % (end-start)
-	print "norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 	
-	print ""
+	print("")
 
 
 if "integration" in tests:
 	tests.remove("integration")
 	
-	print ""
-	print "========== integration tests =========="
-	print ""
+	print("")
+	print("========== integration tests ==========")
+	print("")
 	
 	from moremath import integration
 
@@ -140,25 +140,25 @@ if "integration" in tests:
 		numerical_cubic = integration.cubic(math.sin, a, b, n)
 		analytical = math.cos(a)-math.cos(b)
 		
-		print "for n =", n, " trapezoidal error is: ", numerical_trapezoidal - analytical
-		print "for n =", n, " cubic error is: ", numerical_cubic - analytical
+		print("for n =", n, " trapezoidal error is: ", numerical_trapezoidal - analytical)
+		print("for n =", n, " cubic error is: ", numerical_cubic - analytical)
 	
-	print ""
+	print("")
 
 
 # Test the interpolation methods.
 if "interpolation" in tests:
 	tests.remove("interpolation")
 	
-	print ""
-	print "========== interpolation tests =========="
-	print ""
+	print("")
+	print("========== interpolation tests ==========")
+	print("")
 	
 	from moremath import interpolation
 	
 	# The known points.
 	length = 5
-	Xa = range(length)
+	Xa = list(range(length))
 	Ya = [Xa[i]*Xa[i] for i in range(length)]
 	
 	# Set the spline.
@@ -188,23 +188,23 @@ if "interpolation" in tests:
 	interpolation.evaluate_spline_inverse(my_spline, X_spline, Y, positions, nb_points)
 	
 	# Show the results.
-	print "%10s %10s %10s %10s %10s %10s" % ("X", "Y", "dY", "Y_spline", "dY_spline", "X_spline")
+	print("%10s %10s %10s %10s %10s %10s" % ("X", "Y", "dY", "Y_spline", "dY_spline", "X_spline"))
 	for i in range(nb_points):
-		print "%10.2f %10.2f %10.2f %10.2f %10.2f %10.2f" % (X[i], Y[i], dY[i], Y_spline[i], dY_spline[i], X_spline[i])
+		print("%10.2f %10.2f %10.2f %10.2f %10.2f %10.2f" % (X[i], Y[i], dY[i], Y_spline[i], dY_spline[i], X_spline[i]))
 	
 	# Delete the spline.
 	interpolation.del_spline(my_spline)
 	
-	print ""
+	print("")
 
 
 # Test the least square methods.
 if "least_squares" in tests:
 	tests.remove("least_squares")
 	
-	print ""
-	print "========== least_squares tests =========="
-	print ""
+	print("")
+	print("========== least_squares tests ==========")
+	print("")
 	
 	from moremath import least_squares
 	
@@ -219,63 +219,63 @@ if "least_squares" in tests:
 	
 	sigma = 0.01
 	
-	print ""
-	print "----- Linear least-squares method: -----"
+	print("")
+	print("----- Linear least-squares method: -----")
 	
 	Y = [random.gauss(a_0+a_1*x, sigma) for x in X]
 	
 	a_0_fit, a_1_fit = least_squares.least_squares_linear(X, Y)
 	
-	print "%4s  %10s  %10s" %("", "value", "fit")
-	print "%4s  %10.6f  %10.6f" %("a_0:", a_0, a_0_fit)
-	print "%4s  %10.6f  %10.6f" %("a_1:", a_1, a_1_fit)
+	print("%4s  %10s  %10s" %("", "value", "fit"))
+	print("%4s  %10.6f  %10.6f" %("a_0:", a_0, a_0_fit))
+	print("%4s  %10.6f  %10.6f" %("a_1:", a_1, a_1_fit))
 	
-	print ""
-	print "----- Quadradic least-squares method: -----"
+	print("")
+	print("----- Quadradic least-squares method: -----")
 	
 	Y = [random.gauss(a_0+x*(a_1+x*a_2), sigma) for x in X]
 	
 	a_0_fit, a_1_fit, a_2_fit = least_squares.least_squares_quadratic(X, Y)
 	
-	print "%4s  %10s  %10s" %("", "value", "fit")
-	print "%4s  %10.6f  %10.6f" %("a_0:", a_0, a_0_fit)
-	print "%4s  %10.6f  %10.6f" %("a_1:", a_1, a_1_fit)
-	print "%4s  %10.6f  %10.6f" %("a_2:", a_2, a_2_fit)
+	print("%4s  %10s  %10s" %("", "value", "fit"))
+	print("%4s  %10.6f  %10.6f" %("a_0:", a_0, a_0_fit))
+	print("%4s  %10.6f  %10.6f" %("a_1:", a_1, a_1_fit))
+	print("%4s  %10.6f  %10.6f" %("a_2:", a_2, a_2_fit))
 	
-	print ""
-	print "----- Cubic least-squares method: -----"
+	print("")
+	print("----- Cubic least-squares method: -----")
 	
 	Y = [random.gauss(a_0+x*(a_1+x*(a_2+x*a_3)), sigma) for x in X]
 	
 	a_0_fit, a_1_fit, a_2_fit, a_3_fit = least_squares.least_squares_cubic(X, Y)
 	
-	print "%4s  %10s  %10s" %("", "value", "fit")
-	print "%4s  %10.6f  %10.6f" %("a_0:", a_0, a_0_fit)
-	print "%4s  %10.6f  %10.6f" %("a_1:", a_1, a_1_fit)
-	print "%4s  %10.6f  %10.6f" %("a_2:", a_2, a_2_fit)
-	print "%4s  %10.6f  %10.6f" %("a_3:", a_3, a_3_fit)
+	print("%4s  %10s  %10s" %("", "value", "fit"))
+	print("%4s  %10.6f  %10.6f" %("a_0:", a_0, a_0_fit))
+	print("%4s  %10.6f  %10.6f" %("a_1:", a_1, a_1_fit))
+	print("%4s  %10.6f  %10.6f" %("a_2:", a_2, a_2_fit))
+	print("%4s  %10.6f  %10.6f" %("a_3:", a_3, a_3_fit))
 	
-	print ""
-	print "----- Polynomial least-squares method (applied on cubic polynomial): -----"
+	print("")
+	print("----- Polynomial least-squares method (applied on cubic polynomial): -----")
 	
 	a_0_fit, a_1_fit, a_2_fit, a_3_fit = least_squares.least_squares(X, Y, 3)
 	
-	print "%4s  %10s  %10s" %("", "value", "fit")
-	print "%4s  %10.6f  %10.6f" %("a_0:", a_0, a_0_fit)
-	print "%4s  %10.6f  %10.6f" %("a_1:", a_1, a_1_fit)
-	print "%4s  %10.6f  %10.6f" %("a_2:", a_2, a_2_fit)
-	print "%4s  %10.6f  %10.6f" %("a_3:", a_3, a_3_fit)
+	print("%4s  %10s  %10s" %("", "value", "fit"))
+	print("%4s  %10.6f  %10.6f" %("a_0:", a_0, a_0_fit))
+	print("%4s  %10.6f  %10.6f" %("a_1:", a_1, a_1_fit))
+	print("%4s  %10.6f  %10.6f" %("a_2:", a_2, a_2_fit))
+	print("%4s  %10.6f  %10.6f" %("a_3:", a_3, a_3_fit))
 	
-	print ""
+	print("")
 
 
 # Test the Levenberg-Marquardt method using the NIST standard tests.
 if "Levenberg_Marquardt" in tests:
 	tests.remove("Levenberg_Marquardt")
 	
-	print ""
-	print "========== Levenberg_Marquardt tests =========="
-	print ""
+	print("")
+	print("========== Levenberg_Marquardt tests ==========")
+	print("")
 	
 	from moremath import Levenberg_Marquardt
 	
@@ -366,71 +366,71 @@ if "Levenberg_Marquardt" in tests:
 			total_nb_df_eval += nb_df_eval
 			total_time += test_time
 		
-		print ""
-		print test
-		print "  Level of difficulty:", level
+		print("")
+		print(test)
+		print("  Level of difficulty:", level)
 		if success:
-			print "  PASS after, %i function and %i jacobian evaluations in %.4f seconds." % (nb_f_eval, nb_df_eval, test_time)
+			print("  PASS after, %i function and %i jacobian evaluations in %.4f seconds." % (nb_f_eval, nb_df_eval, test_time))
 		else:
-			print "  FAIL after, %i function and %i jacobian evaluations in %.4f seconds." % (nb_f_eval, nb_df_eval, test_time)
+			print("  FAIL after, %i function and %i jacobian evaluations in %.4f seconds." % (nb_f_eval, nb_df_eval, test_time))
 		if answer == Levenberg_Marquardt.MINIMUM_FOUND:
-			print "  Fit stopped because a minimum was found."
+			print("  Fit stopped because a minimum was found.")
  		elif answer == Levenberg_Marquardt.CHI_2_IS_OK:
-			print "  Fit stopped an acceptable chi square was found."
+			print("  Fit stopped an acceptable chi square was found.")
  		elif answer == Levenberg_Marquardt.CHI_2_CHANGE_TOO_SMALL:
-			print "  Fit stopped because chi square change is too small."
+			print("  Fit stopped because chi square change is too small.")
  		elif answer == Levenberg_Marquardt.DELTA_IS_TOO_SMALL:
-			print "  Fit stopped because the trust zone is smaller than the machine precision."
+			print("  Fit stopped because the trust zone is smaller than the machine precision.")
 		else:
-			print "  Fit stopped because maximum iterations reached."
-		print "             Start            Optimized          Certified     Digits"
+			print("  Fit stopped because maximum iterations reached.")
+		print("             Start            Optimized          Certified     Digits")
 		for i in range(len(par)):
-	 		print "  b%1i  %18.10e %18.10e %18.10e   %2i" % (i+1, start[1][i], b[i], par[i], digits[i])
- 		print "  SSR                    %18.10e %18.10e   %2i" % (chi_2, SSR, digits_SSR)
+	 		print("  b%1i  %18.10e %18.10e %18.10e   %2i" % (i+1, start[1][i], b[i], par[i], digits[i]))
+ 		print("  SSR                    %18.10e %18.10e   %2i" % (chi_2, SSR, digits_SSR))
 	
 	if nb_success != nb_tests:
-		print ""
-		print "%i tests out of %i were successfull." % (nb_success, nb_tests)
+		print("")
+		print("%i tests out of %i were successfull." % (nb_success, nb_tests))
 	else:
-		print ""
-		print "All %i tests were successfull." % nb_tests
+		print("")
+		print("All %i tests were successfull." % nb_tests)
 	if nb_success:
-		print "Successfull tests took a mean of %.1f iterations and %.3f seconds." % (float(total_nb_iterations)/nb_success, total_time/nb_success)
+		print("Successfull tests took a mean of %.1f iterations and %.3f seconds." % (float(total_nb_iterations)/nb_success, total_time/nb_success))
 	
-	print ""
+	print("")
 
 
 # Test the limits.
 if "limits" in tests:
 	tests.remove("limits")
 	
-	print ""
-	print "========== limits tests =========="
-	print ""
+	print("")
+	print("========== limits tests ==========")
+	print("")
 	
 	from moremath import limits
 	
-	print "epsilon:", limits.epsilon
-	print "min:", limits.min
+	print("epsilon:", limits.epsilon)
+	print("min:", limits.min)
 	
-	print ""
+	print("")
 
 
 # Test the Newton polynomials.
 if "Newton_polynomials" in tests:
 	tests.remove("Newton_polynomials")
 	
-	print ""
-	print "========== Newton_polynomials tests =========="
-	print ""
+	print("")
+	print("========== Newton_polynomials tests ==========")
+	print("")
 	
 	from moremath import Newton_polynomials
 	
 	import random
 	import linear_algebra
 	
-	print ""
-	print "----- Linear -----"
+	print("")
+	print("----- Linear -----")
 	
 	X = [random.uniform(-1.0, 1.0) for i in range(2)]
 	Y = [random.uniform(-1.0, 1.0) for i in range(2)]
@@ -438,10 +438,10 @@ if "Newton_polynomials" in tests:
 	b = Newton_polynomials.Newton_linear(X, Y)
 	norm = linear_algebra.norm([b[0]+b[1]*X[i]-Y[i] for i in range(2)])
 	
-	print "norm(f(x)-y) (should be 0):", norm
+	print("norm(f(x)-y) (should be 0):", norm)
 	
-	print ""
-	print "----- Quadratic -----"
+	print("")
+	print("----- Quadratic -----")
 	
 	X = [random.uniform(-1.0, 1.0) for i in range(3)]
 	Y = [random.uniform(-1.0, 1.0) for i in range(3)]
@@ -449,10 +449,10 @@ if "Newton_polynomials" in tests:
 	b = Newton_polynomials.Newton_quadratic(X, Y)
 	norm = linear_algebra.norm([b[0]+b[1]*X[i]+b[2]*X[i]*X[i]-Y[i] for i in range(3)])
 	
-	print "norm(f(x)-y) (should be 0):", norm
+	print("norm(f(x)-y) (should be 0):", norm)
 	
-	print ""
-	print "----- Cubic -----"
+	print("")
+	print("----- Cubic -----")
 	
 	X = [random.uniform(-1.0, 1.0) for i in range(4)]
 	Y = [random.uniform(-1.0, 1.0) for i in range(4)]
@@ -460,9 +460,9 @@ if "Newton_polynomials" in tests:
 	b = Newton_polynomials.Newton_cubic(X, Y)
 	norm = linear_algebra.norm([b[0]+b[1]*X[i]+b[2]*X[i]*X[i]+b[3]*X[i]*X[i]*X[i]-Y[i] for i in range(4)])
 	
-	print "norm(f(x)-y) (should be 0):", norm
+	print("norm(f(x)-y) (should be 0):", norm)
 	
-	print ""
+	print("")
 
 
 
@@ -470,9 +470,9 @@ if "Newton_polynomials" in tests:
 if "QR" in tests:
 	tests.remove("QR")
 	
-	print ""
-	print "========== QR tests =========="
-	print ""
+	print("")
+	print("========== QR tests ==========")
+	print("")
 	
 	from moremath import QR
 	
@@ -482,12 +482,12 @@ if "QR" in tests:
 	import random_system
 	
 	# Square system.
-	print ""
-	print "----- Square system: -----"
+	print("")
+	print("----- Square system: -----")
 	m = 100
 	n = 100
 	r = 100
-	print "Creating a %i by %i system of full rank." % (m, n)
+	print("Creating a %i by %i system of full rank." % (m, n))
 	A, b = random_system.random_system(m, n, r)
 	
 	A_QR = copy.deepcopy(A)
@@ -505,17 +505,17 @@ if "QR" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the results.
-	print "solved in %.4f s." % (end-start)
-	print "found rank = %i" % rank
-	print "norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("found rank = %i" % rank)
+	print("norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 	
 	# Badly scaled square system.
-	print ""
-	print "----- Badly scaled square system: -----"
+	print("")
+	print("----- Badly scaled square system: -----")
 	m = 100
 	n = 100
 	r = 100
-	print "Creating a %i by %i system of full rank." % (m, n)
+	print("Creating a %i by %i system of full rank." % (m, n))
 	A, b = random_system.random_system(m, n, r)
 	
 	# Rescale the columns:
@@ -540,17 +540,17 @@ if "QR" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the results.
-	print "solved in %.4f s." % (end-start)
-	print "found rank = %i" % rank
-	print "norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("found rank = %i" % rank)
+	print("norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 	
 	# Make an overdetermined system.
-	print ""
-	print "----- Overdetermined system: -----"
+	print("")
+	print("----- Overdetermined system: -----")
 	m = 50
 	n = 200
 	r = 50
-	print "Creating a %i by %i system." % (m, n)
+	print("Creating a %i by %i system." % (m, n))
 	A, b = random_system.random_system(m, n, r)
 	
 	A_QR = copy.deepcopy(A)
@@ -568,17 +568,17 @@ if "QR" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the results.
-	print "solved in %.4f s." % (end-start)
-	print "found rank = %i" % rank
-	print "norm(Ax-b) (should be small):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("found rank = %i" % rank)
+	print("norm(Ax-b) (should be small):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 	
 	# Make a rank deficient system.
-	print ""
-	print "----- Rank deficient system: -----"
+	print("")
+	print("----- Rank deficient system: -----")
 	m = 100
 	n = 100
 	r = 90
-	print "Creating a %i by %i system of rank %i." % (m, n, r)
+	print("Creating a %i by %i system of rank %i." % (m, n, r))
 	A, b = random_system.random_system(m, n, r, True)
 	
 	A_QR = copy.deepcopy(A)
@@ -596,17 +596,17 @@ if "QR" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the results.
-	print "solved in %.4f s." % (end-start)
-	print "found rank = %i" % rank
-	print "norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("found rank = %i" % rank)
+	print("norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 	
 	# Make a badly scaled rank deficient system.
-	print ""
-	print "----- Badly scaled rank deficient system: -----"
+	print("")
+	print("----- Badly scaled rank deficient system: -----")
 	m = 100
 	n = 100
 	r = 90
-	print "Creating a %i by %i system of rank %i." % (m, n, r)
+	print("Creating a %i by %i system of rank %i." % (m, n, r))
 	A, b = random_system.random_system(m, n, r, True)
 	
 	# Rescale the columns:
@@ -631,17 +631,17 @@ if "QR" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the results.
-	print "solved in %.4f s." % (end-start)
-	print "found rank = %i" % rank
-	print "norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("found rank = %i" % rank)
+	print("norm(Ax-b) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 	
 	# Make a rank deficient overdetermined system.
-	print ""
-	print "----- Rank deficient overdetermined system: -----"
+	print("")
+	print("----- Rank deficient overdetermined system: -----")
 	m = 50
 	n = 200
 	r = 40
-	print "Creating a %i by %i system of rank %i." % (m, n, r)
+	print("Creating a %i by %i system of rank %i." % (m, n, r))
 	A, b = random_system.random_system(m, n, r, False)
 	
 	A_QR = copy.deepcopy(A)
@@ -659,17 +659,17 @@ if "QR" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the results.
-	print "solved in %.4f s." % (end-start)
-	print "found rank = %i" % rank
-	print "norm(Ax-b) (should be small):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("found rank = %i" % rank)
+	print("norm(Ax-b) (should be small):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 
 	# Make a system.
-	print ""
-	print "----- Rectangular system: -----"
+	print("")
+	print("----- Rectangular system: -----")
 	m = 50
 	n = 200
 	r = 50
-	print "Creating a %i by %i system of rank %i." % (m, n, r)
+	print("Creating a %i by %i system of rank %i." % (m, n, r))
 	A, b = random_system.random_system(m, n, r, False)
 	
 	A_QR = copy.deepcopy(A)
@@ -689,13 +689,13 @@ if "QR" in tests:
 	Ax = linear_algebra.matrix_product(A, [x])
 	
 	# Show the results.
-	print "solved in %.4f s." % (end-start)
-	print "found rank = %i" % rank
-	print "norm(Ax-b) (should be small):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0])
+	print("solved in %.4f s." % (end-start))
+	print("found rank = %i" % rank)
+	print("norm(Ax-b) (should be small):", linear_algebra.norm(linear_algebra.matrix_difference(Ax, [b])[0]))
 	
 	# Augment the system using a diagonal matrix.
-	print ""
-	print "----- Augmented rectangular system 1: -----"
+	print("")
+	print("----- Augmented rectangular system 1: -----")
 	
 	# Add diagonal elements.
 	D_1 = [random.uniform(-1.0, 1.0) for i in range(m)]
@@ -704,11 +704,11 @@ if "QR" in tests:
 	x_augmented_1 = QR.R_solve_with_update(A_QR, diag, perm, c, D_1)
 	end = time.clock()
 	
-	print "updated and solved in %.4f s." % (end-start)
+	print("updated and solved in %.4f s." % (end-start))
 	
 	# Augment the system using a diagonal matrix.
-	print ""
-	print "----- Augmented rectangular system 2: -----"
+	print("")
+	print("----- Augmented rectangular system 2: -----")
 	
 	# Add diagonal elements.
 	D_2 = [random.uniform(-100.0, 100.0) for i in range(m)]
@@ -717,11 +717,11 @@ if "QR" in tests:
 	x_augmented_2 = QR.R_solve_with_update(A_QR, diag, perm, c, D_2)
 	end = time.clock()
 	
-	print "updated and solved in %.4f s." % (end-start)
+	print("updated and solved in %.4f s." % (end-start))
 	
 	# Create a rectangular matrix equivalent to the augmented system.
-	print ""
-	print "----- Equivalent rectangular system 1: -----"
+	print("")
+	print("----- Equivalent rectangular system 1: -----")
 	
 	A_QR = copy.deepcopy(A)
 	c = copy.deepcopy(b)
@@ -740,12 +740,12 @@ if "QR" in tests:
 	x_equivalent = QR.QR_solve(A_QR, diag, perm, c)
 	end = time.clock()
 	
-	print "solved in %.4f s." % (end-start)
-	print "norm(x_augmented-x_equivalent) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference([x_equivalent], [x_augmented_1])[0])
+	print("solved in %.4f s." % (end-start))
+	print("norm(x_augmented-x_equivalent) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference([x_equivalent], [x_augmented_1])[0]))
 	
 	# Create a rectangular matrix equivalent to the augmented system.
-	print ""
-	print "----- Equivalent rectangular system 2: -----"
+	print("")
+	print("----- Equivalent rectangular system 2: -----")
 	
 	A_QR = copy.deepcopy(A)
 	c = copy.deepcopy(b)
@@ -764,19 +764,19 @@ if "QR" in tests:
 	x_equivalent = QR.QR_solve(A_QR, diag, perm, c)
 	end = time.clock()
 	
-	print "solved in %.4f s." % (end-start)
-	print "norm(x_augmented-x_equivalent) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference([x_equivalent], [x_augmented_2])[0])
+	print("solved in %.4f s." % (end-start))
+	print("norm(x_augmented-x_equivalent) (should be 0):", linear_algebra.norm(linear_algebra.matrix_difference([x_equivalent], [x_augmented_2])[0]))
 	
-	print ""
+	print("")
 
 
 # Test the roots.
 if "roots" in tests:
 	tests.remove("roots")
 	
-	print ""
-	print "========== roots tests =========="
-	print ""
+	print("")
+	print("========== roots tests ==========")
+	print("")
 	
 	from moremath import roots
 	
@@ -787,11 +787,11 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_linear(found_roots, a_0, a_1)
 	verification = [a_0 + a_1*found_roots[i] for i in range(nb_roots)]
-	print ""
-	print "Linear:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Linear:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
 	a_0 = 20.0
 	a_1 = -10.0
@@ -799,11 +799,11 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_quadratic(found_roots, a_0, a_1, a_2)
 	verification = [a_0 + found_roots[i]*(a_1 + found_roots[i]*a_2) for i in range(nb_roots)]
-	print ""
-	print "Quadratic with 2 roots:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Quadratic with 2 roots:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
 	a_0 = 25.0
 	a_1 = -10.0
@@ -811,11 +811,11 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_quadratic(found_roots, a_0, a_1, a_2)
 	verification = [a_0 + found_roots[i]*(a_1 + found_roots[i]*a_2) for i in range(nb_roots)]
-	print ""
-	print "Quadratic with double root:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Quadratic with double root:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
 	a_0 = 30.0
 	a_1 = -10.0
@@ -823,11 +823,11 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_quadratic(found_roots, a_0, a_1, a_2)
 	verification = [a_0 + found_roots[i]*(a_1 + found_roots[i]*a_2) for i in range(nb_roots)]
-	print ""
-	print "Quadratic with no root:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Quadratic with no root:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
 	a_0 = 24.0
 	a_1 = -2.0
@@ -836,11 +836,11 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_cubic(found_roots, a_0, a_1, a_2, a_3)
 	verification = [a_0 + found_roots[i]*(a_1 + found_roots[i]*(a_2 + found_roots[i]*a_3)) for i in range(nb_roots)]
-	print ""
-	print "Cubic with 3 roots:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Cubic with 3 roots:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
 	a_0 = -125.0
 	a_1 = 75.0
@@ -849,11 +849,11 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_cubic(found_roots, a_0, a_1, a_2, a_3)
 	verification = [a_0 + found_roots[i]*(a_1 + found_roots[i]*(a_2 + found_roots[i]*a_3)) for i in range(nb_roots)]
-	print ""
-	print "Cubic with triple root:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Cubic with triple root:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
 	a_0 = 32.0
 	a_1 = 0.0
@@ -862,11 +862,11 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_cubic(found_roots, a_0, a_1, a_2, a_3)
 	verification = [a_0 + found_roots[i]*(a_1 + found_roots[i]*(a_2 + found_roots[i]*a_3)) for i in range(nb_roots)]
-	print ""
-	print "Cubic with a single and a double root:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Cubic with a single and a double root:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
 	a_0 = 32.0
 	a_1 = 2.0
@@ -875,11 +875,11 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_cubic(found_roots, a_0, a_1, a_2, a_3)
 	verification = [a_0 + found_roots[i]*(a_1 + found_roots[i]*(a_2 + found_roots[i]*a_3)) for i in range(nb_roots)]
-	print ""
-	print "Cubic with 1 root:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Cubic with 1 root:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
 	a_0 = 32.0
 	a_1 = -2.0
@@ -888,21 +888,21 @@ if "roots" in tests:
 	
 	nb_roots = roots.roots_cubic(found_roots, a_0, a_1, a_2, a_3)
 	verification = [a_0 + found_roots[i]*(a_1 + found_roots[i]*(a_2 + found_roots[i]*a_3)) for i in range(nb_roots)]
-	print ""
-	print "Cubic with 1 root:"
-	print "  Found %i root(s)" % nb_roots
-	print "  Roots:", found_roots[0:nb_roots]
-	print "  Verification (should be zeros):", verification
+	print("")
+	print("Cubic with 1 root:")
+	print("  Found %i root(s)" % nb_roots)
+	print("  Roots:", found_roots[0:nb_roots])
+	print("  Verification (should be zeros):", verification)
 	
-	print ""
+	print("")
 
 
 if "StRD" in tests:
 	tests.remove("StRD")
 	
-	print ""
-	print "========== StRD tests =========="
-	print ""
+	print("")
+	print("========== StRD tests ==========")
+	print("")
 	
 	from moremath import StRD
 	
@@ -912,8 +912,8 @@ if "StRD" in tests:
 	
 	for test in StRD.tests:
 		
-		print ""
-		print test
+		print("")
+		print(test)
 		
 		# Get the test.
 		f, df, X, Y, par, start, SSR, level = StRD.get_test(test)
@@ -956,13 +956,13 @@ if "StRD" in tests:
 				else:
 					digits[i] = -math.log10( abs(dY_diff[i]-dY[par][i])/ abs(dY[par][i]) )
 			
-			print "  par %i: %5.1f %5.1f %5.1f" % (par, min(digits), sum(digits)/len(digits), max(digits))
+			print("  par %i: %5.1f %5.1f %5.1f" % (par, min(digits), sum(digits)/len(digits), max(digits)))
 	
-	print ""
+	print("")
 
 
 # Verify that all tests were executed
 if tests:
-	print ""
-	print "Unknown or duplicate tests were ignored."
-	print ""
+	print("")
+	print("Unknown or duplicate tests were ignored.")
+	print("")

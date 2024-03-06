@@ -1786,7 +1786,7 @@ class material_catalog(object):
 		
 		# Get the material names and sort them in a case insensitive
 		# manner.
-		material_names = self.materials.keys()
+		material_names = list(self.materials.keys())
 		material_names.sort(key = str.upper)
 		
 		return material_names
@@ -1989,7 +1989,7 @@ def parse_material(name, lines):
 	
 	try:
 		keywords, values = simple_parser.parse(lines)
-	except simple_parser.parsing_error, error:
+	except simple_parser.parsing_error as error:
 		raise material_parsing_error("Cannot parse material because %s" % error.get_value())
 	
 	description = None
@@ -2720,7 +2720,7 @@ def import_material(filename, name, description, nb_header_lines, wavelength_uni
 		raise material_parsing_error("The refractive index must be defined at least at 3 wavelengths")
 	
 	# Sort in order of wavelength
-	wvls, values = zip(*sorted(zip(wvls, values)))
+	wvls, values = list(zip(*sorted(zip(wvls, values))))
 	
 	# Make sure there is no repeated wavelength values.
 	for i in range(len(wvls)-1):

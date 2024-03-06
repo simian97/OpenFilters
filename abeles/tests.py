@@ -34,10 +34,10 @@ import abeles
 
 
 if abeles.get_abeles_dll_import_success():
-	print "Working with the dll."
+	print("Working with the dll.")
 else:
-	print "Working with Python versions."
-print ""
+	print("Working with Python versions.")
+print("")
 
 
 thickness_layer = 1000.0
@@ -50,11 +50,11 @@ start = time.clock()
 wvls = abeles.wvls(701)
 wvls.set_wvls_by_range(300.0, 1.0)
 stop = time.clock()
-print "wvls created in %.4f seconds" % (stop-start)
+print("wvls created in %.4f seconds" % (stop-start))
 
-print "wvls[50]:", wvls[50]
-print "wvls[250]:", wvls[250]
-print ""
+print("wvls[50]:", wvls[50])
+print("wvls[250]:", wvls[250])
+print("")
 
 start = time.clock()
 constant = abeles.constant()
@@ -74,8 +74,8 @@ Cauchy.set_Cauchy(1.5, 0.002, 0.0001, 0.00002, 6.0, 3000)
 Sellmeier = abeles.Sellmeier()
 Sellmeier.set_Sellmeier(1.03961212, 6.00069867e-3, 0.231792344, 2.00179144e-2, 1.01046945, 1.03560653e2, 0.00002, 6.0, 3000)
 stop = time.clock()
-print "constant, table and Cauchy created and set in %.4f seconds" % (stop-start)
-print ""
+print("constant, table and Cauchy created and set in %.4f seconds" % (stop-start))
+print("")
 
 start = time.clock()
 constant_mixture = abeles.constant_mixture(6)
@@ -112,17 +112,17 @@ for i_wvl in range(13):
 	table_mixture.set_table_mixture(4, i_wvl, 100, wvl, 2.068+0.014/wvl_micron**2-0.0004j)
 table_mixture.prepare_table_mixture()
 stop = time.clock()
-print "mixtures created and set in %.4f seconds" % (stop-start)
+print("mixtures created and set in %.4f seconds" % (stop-start))
 
-print "constant_mixture index range @ 350nm:", constant_mixture.get_constant_mixture_index_range(350.0)
-print "constant_mixture index range @ 550nm:", constant_mixture.get_constant_mixture_index_range(550.0)
-print "Cauchy_mixture index range @ 350nm:", Cauchy_mixture.get_Cauchy_mixture_index_range(350.0)
-print "Cauchy_mixture index range @ 550nm:", Cauchy_mixture.get_Cauchy_mixture_index_range(550.0)
-print "Sellmeier_mixture index range @ 350nm:", Sellmeier_mixture.get_Sellmeier_mixture_index_range(350.0)
-print "Sellmeier_mixture index range @ 550nm:", Sellmeier_mixture.get_Sellmeier_mixture_index_range(550.0)
-print "table_mixture index range @ 350nm:", table_mixture.get_table_mixture_index_range(350.0)
-print "table_mixture index range @ 550nm:", table_mixture.get_table_mixture_index_range(550.0)
-print ""
+print("constant_mixture index range @ 350nm:", constant_mixture.get_constant_mixture_index_range(350.0))
+print("constant_mixture index range @ 550nm:", constant_mixture.get_constant_mixture_index_range(550.0))
+print("Cauchy_mixture index range @ 350nm:", Cauchy_mixture.get_Cauchy_mixture_index_range(350.0))
+print("Cauchy_mixture index range @ 550nm:", Cauchy_mixture.get_Cauchy_mixture_index_range(550.0))
+print("Sellmeier_mixture index range @ 350nm:", Sellmeier_mixture.get_Sellmeier_mixture_index_range(350.0))
+print("Sellmeier_mixture index range @ 550nm:", Sellmeier_mixture.get_Sellmeier_mixture_index_range(550.0))
+print("table_mixture index range @ 350nm:", table_mixture.get_table_mixture_index_range(350.0))
+print("table_mixture index range @ 550nm:", table_mixture.get_table_mixture_index_range(550.0))
+print("")
 
 start = time.clock()
 n_medium = abeles.N(wvls)
@@ -134,17 +134,17 @@ table.set_N_table(n_layer)
 Cauchy.set_N_Cauchy(n_substrate)
 Sellmeier.set_N_Sellmeier(n_Sellmeier)
 stop = time.clock()
-print "n_constant, n_table and n_Cauchy created and set in %.4f seconds" % (stop-start)
+print("n_constant, n_table and n_Cauchy created and set in %.4f seconds" % (stop-start))
 
-print "n_medium @ %fnm:" % wvls[50], n_medium[50]
-print "n_medium @ %fnm:" % wvls[250], n_medium[250]
-print "n_layer @ %fnm:" % wvls[50], n_layer[50]
-print "n_layer @ %fnm:" % wvls[250], n_layer[250]
-print "n_substrate @ %fnm:" % wvls[50], n_substrate[50]
-print "n_substrate @ %fnm:" % wvls[250], n_substrate[250]
-print "n_Sellmeier @ %fnm:" % wvls[50], n_Sellmeier[50]
-print "n_Sellmeier @ %fnm:" % wvls[250], n_Sellmeier[250]
-print ""
+print("n_medium @ %fnm:" % wvls[50], n_medium[50])
+print("n_medium @ %fnm:" % wvls[250], n_medium[250])
+print("n_layer @ %fnm:" % wvls[50], n_layer[50])
+print("n_layer @ %fnm:" % wvls[250], n_layer[250])
+print("n_substrate @ %fnm:" % wvls[50], n_substrate[50])
+print("n_substrate @ %fnm:" % wvls[250], n_substrate[250])
+print("n_Sellmeier @ %fnm:" % wvls[50], n_Sellmeier[50])
+print("n_Sellmeier @ %fnm:" % wvls[250], n_Sellmeier[250])
+print("")
 
 start = time.clock()
 N_mixture_constant = abeles.N_mixture(constant_mixture, wvls)
@@ -168,25 +168,25 @@ dn_layer_3 = N_mixture_table.get_dN_mixture()
 dn_layer_4 = N_mixture_Cauchy.get_dN_mixture()
 dn_layer_5 = N_mixture_Sellmeier.get_dN_mixture()
 stop = time.clock()
-print "n for mixtures created and set in %.4f seconds" % (stop-start)
+print("n for mixtures created and set in %.4f seconds" % (stop-start))
 
-print "n_layer_2 @ %fnm:" % wvls[50], n_layer_2[50]
-print "n_layer_2 @ %fnm:" % wvls[250], n_layer_2[250]
-print "n_layer_3 @ %fnm:" % wvls[50], n_layer_3[50]
-print "n_layer_3 @ %fnm:" % wvls[250], n_layer_3[250]
-print "n_layer_4 @ %fnm:" % wvls[50], n_layer_4[50]
-print "n_layer_4 @ %fnm:" % wvls[250], n_layer_4[250]
-print "n_layer_5 @ %fnm:" % wvls[50], n_layer_5[50]
-print "n_layer_5 @ %fnm:" % wvls[250], n_layer_5[250]
-print "dn_layer_2 @ %fnm:" % wvls[50], dn_layer_2[50]
-print "dn_layer_2 @ %fnm:" % wvls[250], dn_layer_2[250]
-print "dn_layer_3 @ %fnm:" % wvls[50], dn_layer_3[50]
-print "dn_layer_3 @ %fnm:" % wvls[250], dn_layer_3[250]
-print "dn_layer_4 @ %fnm:" % wvls[50], dn_layer_4[50]
-print "dn_layer_4 @ %fnm:" % wvls[250], dn_layer_4[250]
-print "dn_layer_5 @ %fnm:" % wvls[50], dn_layer_5[50]
-print "dn_layer_5 @ %fnm:" % wvls[250], dn_layer_5[250]
-print ""
+print("n_layer_2 @ %fnm:" % wvls[50], n_layer_2[50])
+print("n_layer_2 @ %fnm:" % wvls[250], n_layer_2[250])
+print("n_layer_3 @ %fnm:" % wvls[50], n_layer_3[50])
+print("n_layer_3 @ %fnm:" % wvls[250], n_layer_3[250])
+print("n_layer_4 @ %fnm:" % wvls[50], n_layer_4[50])
+print("n_layer_4 @ %fnm:" % wvls[250], n_layer_4[250])
+print("n_layer_5 @ %fnm:" % wvls[50], n_layer_5[50])
+print("n_layer_5 @ %fnm:" % wvls[250], n_layer_5[250])
+print("dn_layer_2 @ %fnm:" % wvls[50], dn_layer_2[50])
+print("dn_layer_2 @ %fnm:" % wvls[250], dn_layer_2[250])
+print("dn_layer_3 @ %fnm:" % wvls[50], dn_layer_3[50])
+print("dn_layer_3 @ %fnm:" % wvls[250], dn_layer_3[250])
+print("dn_layer_4 @ %fnm:" % wvls[50], dn_layer_4[50])
+print("dn_layer_4 @ %fnm:" % wvls[250], dn_layer_4[250])
+print("dn_layer_5 @ %fnm:" % wvls[50], dn_layer_5[50])
+print("dn_layer_5 @ %fnm:" % wvls[250], dn_layer_5[250])
+print("")
 
 start = time.clock()
 N_mixture_constant.prepare_N_mixture_graded(101)
@@ -203,34 +203,34 @@ for i in range(101):
 	N_mixture_Cauchy.set_N_mixture_graded(i, n_min_Cauchy+i*(n_max_Cauchy-n_min_Cauchy)/(101-1), 550.0)
 	N_mixture_Sellmeier.set_N_mixture_graded(i, n_min_Sellmeier+i*(n_max_Sellmeier-n_min_Sellmeier)/(101-1), 550.0)
 stop = time.clock()
-print "graded n created and set in %.4f seconds" % (stop-start)
+print("graded n created and set in %.4f seconds" % (stop-start))
 
-print "n of constant mixture at middle step @ %fnm:" % wvls[50], N_mixture_constant.get_N_mixture_graded(50)[50]
-print "n of constant mixture at middle step @ %fnm:" % wvls[250], N_mixture_constant.get_N_mixture_graded(50)[250]
-print "n of table mixture at middle step @ %fnm:" % wvls[50], N_mixture_table.get_N_mixture_graded(50)[50]
-print "n of table mixture at middle step @ %fnm:" % wvls[250], N_mixture_table.get_N_mixture_graded(50)[250]
-print "n of Cauchy mixture at middle step @ %fnm:" % wvls[50], N_mixture_Cauchy.get_N_mixture_graded(50)[50]
-print "n of Cauchy mixture at middle step @ %fnm:" % wvls[250], N_mixture_Cauchy.get_N_mixture_graded(50)[250]
-print "n of Sellmeier mixture at middle step @ %fnm:" % wvls[50], N_mixture_Sellmeier.get_N_mixture_graded(50)[50]
-print "n of Sellmeier mixture at middle step @ %fnm:" % wvls[250], N_mixture_Sellmeier.get_N_mixture_graded(50)[250]
-print ""
+print("n of constant mixture at middle step @ %fnm:" % wvls[50], N_mixture_constant.get_N_mixture_graded(50)[50])
+print("n of constant mixture at middle step @ %fnm:" % wvls[250], N_mixture_constant.get_N_mixture_graded(50)[250])
+print("n of table mixture at middle step @ %fnm:" % wvls[50], N_mixture_table.get_N_mixture_graded(50)[50])
+print("n of table mixture at middle step @ %fnm:" % wvls[250], N_mixture_table.get_N_mixture_graded(50)[250])
+print("n of Cauchy mixture at middle step @ %fnm:" % wvls[50], N_mixture_Cauchy.get_N_mixture_graded(50)[50])
+print("n of Cauchy mixture at middle step @ %fnm:" % wvls[250], N_mixture_Cauchy.get_N_mixture_graded(50)[250])
+print("n of Sellmeier mixture at middle step @ %fnm:" % wvls[50], N_mixture_Sellmeier.get_N_mixture_graded(50)[50])
+print("n of Sellmeier mixture at middle step @ %fnm:" % wvls[250], N_mixture_Sellmeier.get_N_mixture_graded(50)[250])
+print("")
 
 start = time.clock()
 sin2_theta_0 = abeles.sin2(wvls)
 sin2_theta_0.set_sin2_theta_0(n_medium, theta_0)
 stop = time.clock()
-print "sin2_theta_0 created and set in %.4f seconds" % (stop-start)
+print("sin2_theta_0 created and set in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 matrices = abeles.matrices(wvls)
 global_matrices_front = abeles.matrices(wvls)
 global_matrices_back = abeles.matrices(wvls)
 stop = time.clock()
-print "matrices and global_matrices created in %.4f seconds" % (stop-start)
+print("matrices and global_matrices created in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 global_matrices_front.set_matrices_unity()
@@ -238,9 +238,9 @@ global_matrices_back.copy_matrices(global_matrices_front)
 matrices.set_matrices(n_layer, thickness_layer, sin2_theta_0)
 global_matrices_front.multiply_matrices(matrices)
 stop = time.clock()
-print "matrices set and multiplied in %.4f seconds" % (stop-start)
+print("matrices set and multiplied in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 r_and_t_front = abeles.r_and_t(wvls)
@@ -256,9 +256,9 @@ R = abeles.R(wvls)
 T = abeles.T(wvls)
 A = abeles.A(wvls)
 stop = time.clock()
-print "Multiple r_and_t and spectrum created in %.4f seconds" % (stop-start)
+print("Multiple r_and_t and spectrum created in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 r_and_t_front.calculate_r_and_t(global_matrices_front, n_medium, n_substrate, sin2_theta_0)
@@ -274,15 +274,15 @@ R.calculate_R_with_backside(T_front, R_front, T_front_reverse, R_front_reverse, 
 T.calculate_T_with_backside(T_front, R_front_reverse, T_back, R_back, n_substrate, thickness_substrate, sin2_theta_0)
 A.calculate_A(R, T)
 stop = time.clock()
-print "r_and_t and spectrum calculated in %.4f seconds" % (stop-start)
+print("r_and_t and spectrum calculated in %.4f seconds" % (stop-start))
 
-print "R @ %fnm:" % wvls[50], R[50]
-print "R @ %fnm:" % wvls[250], R[250]
-print "T @ %fnm:" % wvls[50], T[50]
-print "T @ %fnm:" % wvls[250], T[250]
-print "A @ %fnm:" % wvls[50], A[50]
-print "A @ %fnm:" % wvls[250], A[250]
-print ""
+print("R @ %fnm:" % wvls[50], R[50])
+print("R @ %fnm:" % wvls[250], R[250])
+print("T @ %fnm:" % wvls[50], T[50])
+print("T @ %fnm:" % wvls[250], T[250])
+print("A @ %fnm:" % wvls[50], A[50])
+print("A @ %fnm:" % wvls[250], A[250])
+print("")
 
 #for i in range(len(wvls)):
 #	print "R, T and A at %fnm" % wvls[i], R[i], T[i], A[i]
@@ -295,9 +295,9 @@ GD_t = abeles.GD(wvls)
 GDD_r = abeles.GDD(wvls)
 GDD_t = abeles.GDD(wvls)
 stop = time.clock()
-print "phase, GD and GDD objects created in %.4f seconds" % (stop-start)
+print("phase, GD and GDD objects created in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 phase_r.calculate_r_phase(global_matrices_front, n_medium, n_substrate, sin2_theta_0, abeles.S)
@@ -307,15 +307,15 @@ GD_t.calculate_GD(phase_t)
 GDD_r.calculate_GDD(phase_r)
 GDD_t.calculate_GDD(phase_t)
 stop = time.clock()
-print "phase, GD and GDD calculated in %.4f seconds" % (stop-start)
+print("phase, GD and GDD calculated in %.4f seconds" % (stop-start))
 
-print "phase_r @ %fnm:" % wvls[50], phase_r[50]
-print "phase_t @ %fnm:" % wvls[250], phase_t[250]
-print "GD_r @ %fnm:" % wvls[50], GD_r[50]
-print "GD_t @ %fnm:" % wvls[250], GD_t[250]
-print "GDD_r @ %fnm:" % wvls[50], GDD_r[50]
-print "GDD_t @ %fnm:" % wvls[250], GDD_t[250]
-print ""
+print("phase_r @ %fnm:" % wvls[50], phase_r[50])
+print("phase_t @ %fnm:" % wvls[250], phase_t[250])
+print("GD_r @ %fnm:" % wvls[50], GD_r[50])
+print("GD_t @ %fnm:" % wvls[250], GD_t[250])
+print("GDD_r @ %fnm:" % wvls[50], GDD_r[50])
+print("GDD_t @ %fnm:" % wvls[250], GDD_t[250])
+print("")
 
 #for i in range(len(wvls)):
 #	print "phase_r, GD_r and GDD_r at %fnm" % wvls[i], phase_r[i], GD_r[i], GDD_r[i]
@@ -324,23 +324,23 @@ start = time.clock()
 Psi_and_Delta = abeles.Psi_and_Delta(wvls)
 Psi_and_Delta_with_backside = abeles.Psi_and_Delta(wvls)
 stop = time.clock()
-print "Psi_and_Delta objects created in %.4f seconds" % (stop-start)
+print("Psi_and_Delta objects created in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 Psi_and_Delta.calculate_Psi_and_Delta(r_and_t_front)
 Psi_and_Delta_with_backside.calculate_Psi_and_Delta_with_backside(r_and_t_front, r_and_t_front_reverse, r_and_t_back, n_substrate, thickness_substrate, sin2_theta_0)
 stop = time.clock()
-print "Psi_and_Delta calculated in %.4f seconds" % (stop-start)
+print("Psi_and_Delta calculated in %.4f seconds" % (stop-start))
 
 Psi = Psi_and_Delta.get_Psi()
 Delta = Psi_and_Delta.get_Delta()
-print "Psi and Delta @ %fnm:" % wvls[50], Psi[50], Delta[50]
-print "Psi and Delta @ %fnm:" % wvls[250], Psi[250], Delta[250]
-print "Psi and Delta with backside @ %fnm:" % wvls[50], Psi_and_Delta_with_backside[50]
-print "Psi and Delta with backside @ %fnm:" % wvls[250], Psi_and_Delta_with_backside[250]
-print ""
+print("Psi and Delta @ %fnm:" % wvls[50], Psi[50], Delta[50])
+print("Psi and Delta @ %fnm:" % wvls[250], Psi[250], Delta[250])
+print("Psi and Delta with backside @ %fnm:" % wvls[50], Psi_and_Delta_with_backside[50])
+print("Psi and Delta with backside @ %fnm:" % wvls[250], Psi_and_Delta_with_backside[250])
+print("")
 
 #for i in range(len(wvls)):
 #	print "Psi and Delta @ %fnm:" % wvls[i], Psi_and_Delta[i]
@@ -348,57 +348,57 @@ print ""
 start = time.clock()
 admittance = abeles.admittance(wvls)
 stop = time.clock()
-print "admittance object created in %.4f seconds" % (stop-start)
+print("admittance object created in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 admittance.calculate_admittance(global_matrices_front, n_substrate, sin2_theta_0, abeles.S)
 stop = time.clock()
-print "admittance calculated in %.4f seconds" % (stop-start)
+print("admittance calculated in %.4f seconds" % (stop-start))
 
-print "admittance @ %fnm:" % wvls[50], admittance[50]
-print "admittance @ %fnm:" % wvls[250], admittance[250]
-print ""
+print("admittance @ %fnm:" % wvls[50], admittance[50])
+print("admittance @ %fnm:" % wvls[250], admittance[250])
+print("")
 
 start = time.clock()
 circle = abeles.circle(wvls)
 stop = time.clock()
-print "circle object created in %.4f seconds" % (stop-start)
+print("circle object created in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 circle.calculate_circle(r_and_t_front, abeles.S)
 stop = time.clock()
-print "circle calculated in %.4f seconds" % (stop-start)
+print("circle calculated in %.4f seconds" % (stop-start))
 
-print "circle @ %fnm:" % wvls[50], circle[50]
-print "circle @ %fnm:" % wvls[250], circle[250]
-print ""
+print("circle @ %fnm:" % wvls[50], circle[50])
+print("circle @ %fnm:" % wvls[250], circle[250])
+print("")
 
 start = time.clock()
 electric_field = abeles.electric_field(wvls)
 stop = time.clock()
-print "electric_field object created in %.4f seconds" % (stop-start)
+print("electric_field object created in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 electric_field.calculate_electric_field(global_matrices_front, n_substrate, sin2_theta_0, abeles.S)
 stop = time.clock()
-print "electric_field calculated in %.4f seconds" % (stop-start)
+print("electric_field calculated in %.4f seconds" % (stop-start))
 
-print "electric_field @ %fnm:" % wvls[50], electric_field[50]
-print "electric_field @ %fnm:" % wvls[250], electric_field[250]
-print ""
+print("electric_field @ %fnm:" % wvls[50], electric_field[50])
+print("electric_field @ %fnm:" % wvls[250], electric_field[250])
+print("")
 
 start = time.clock()
 monitoring_matrices = abeles.monitoring_matrices(wvls, 101)
 stop = time.clock()
-print "monitoring_matrices object created in %.4f seconds" % (stop-start)
+print("monitoring_matrices object created in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 global_matrices_front.set_matrices_unity()
@@ -406,19 +406,19 @@ for i in range(101):
 	monitoring_matrices.set_monitoring_matrices(i, n_layer, i*thickness_layer/100, sin2_theta_0)
 monitoring_matrices.multiply_monitoring_matrices(global_matrices_front)
 stop = time.clock()
-print "monitoring_matrices calculated in %.4f seconds" % (stop-start)
+print("monitoring_matrices calculated in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 r_and_t_front.calculate_r_and_t(monitoring_matrices[75], n_medium, n_substrate, sin2_theta_0)
 R_front.calculate_R(r_and_t_front, polarization)
 stop = time.clock()
-print "R spectrum calculated in %.4f seconds" % (stop-start)
+print("R spectrum calculated in %.4f seconds" % (stop-start))
 
-print "R @ %fnm:" % wvls[50], R_front[50]
-print "R @ %fnm:" % wvls[250], R_front[250]
-print ""
+print("R @ %fnm:" % wvls[50], R_front[50])
+print("R @ %fnm:" % wvls[250], R_front[250])
+print("")
 
 start = time.clock()
 global_matrices_front.set_matrices_unity()
@@ -427,15 +427,15 @@ for i in range(1, 101):
 	monitoring_matrices.set_monitoring_matrices(i, n_layer, thickness_layer/100, sin2_theta_0)
 monitoring_matrices.multiply_monitoring_matrices_cumulative(global_matrices_front)
 stop = time.clock()
-print "monitoring_matrices calculated cumulatively in %.4f seconds" % (stop-start)
+print("monitoring_matrices calculated cumulatively in %.4f seconds" % (stop-start))
 
-print ""
+print("")
 
 start = time.clock()
 r_and_t_front.calculate_r_and_t(monitoring_matrices[75], n_medium, n_substrate, sin2_theta_0)
 R_front.calculate_R(r_and_t_front, polarization)
 stop = time.clock()
-print "R spectrum calculated in %.4f seconds" % (stop-start)
+print("R spectrum calculated in %.4f seconds" % (stop-start))
 
-print "R @ %fnm:" % wvls[50], R_front[50]
-print "R @ %fnm:" % wvls[250], R_front[250]
+print("R @ %fnm:" % wvls[50], R_front[50])
+print("R @ %fnm:" % wvls[250], R_front[250])

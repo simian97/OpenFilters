@@ -576,7 +576,7 @@ class manage_materials_dialog(wx.Dialog):
 		if answer == wx.ID_OK:
 			try:
 				material = window.get_material()
-			except materials.material_error, error:
+			except materials.material_error as error:
 				wx.MessageBox("An error occured while importing the material.\n\n%s" % error, "Error", wx.ICON_ERROR|wx.OK)
 		
 		window.Destroy()
@@ -1419,10 +1419,10 @@ class material_table_dialog(material_dialog):
 		self.n_plot.reset()
 		self.k_plot.reset()
 		
-		wvls_, n_, = zip(*[(wvls[i], n[i]) for i in range(nb_wavelengths) if wvls[i] != None and n[i] != None]) or ([], [])
+		wvls_, n_, = list(zip(*[(wvls[i], n[i]) for i in range(nb_wavelengths) if wvls[i] != None and n[i] != None])) or ([], [])
 		self.n_plot.add_curve(plot_curve(wvls_, n_, style = plot_curve_style(colour = "RED", width = 0, marker = "x")))
 		
-		wvls_, k_, = zip(*[(wvls[i], k[i]) for i in range(nb_wavelengths) if wvls[i] != None and k[i] != None]) or ([], [])
+		wvls_, k_, = list(zip(*[(wvls[i], k[i]) for i in range(nb_wavelengths) if wvls[i] != None and k[i] != None])) or ([], [])
 		self.k_plot.add_curve(plot_curve(wvls_, k_, style = plot_curve_style(colour = "RED", width = 0, marker = "x")))
 		
 		if all(wvl is not None for wvl in wvls) and all(n_i is not None for n_i in n) and all(k_i is not None for k_i in k) and all(wvls[i] > wvls[i-1] for i in range(1, len(wvls))):
@@ -2138,7 +2138,7 @@ class material_mixture_constant_dialog(material_mixture_dialog):
 			# avoid plot update failures that might happen if the first
 			# mixture is not 0, or if the mixtures are not in order. This only
 			# applies to the modified material used internally for plotting.
-			X = range(len(N))
+			X = list(range(len(N)))
 			
 			self.modified_material.set_properties(X, N)
 			material_mixture_dialog.update_plots(self)
@@ -2488,7 +2488,7 @@ class material_mixture_table_dialog(material_mixture_dialog):
 		# Plot n and k ignoring wavelengths or refractive indices that
 		# could not be read.
 		for i_mix in range(nb_mixtures):
-			wvls_, n_, k_ = zip(*[(wvls[i_wvl], N[i_mix][i_wvl].real, -N[i_mix][i_wvl].imag) for i_wvl in range(nb_wavelengths) if wvls[i_wvl] != None and N[i_mix][i_wvl] != None]) or ([], [], [])
+			wvls_, n_, k_ = list(zip(*[(wvls[i_wvl], N[i_mix][i_wvl].real, -N[i_mix][i_wvl].imag) for i_wvl in range(nb_wavelengths) if wvls[i_wvl] != None and N[i_mix][i_wvl] != None])) or ([], [], [])
 			self.n_plot.add_curve(plot_curve(wvls_, n_, style = plot_curve_style(colour = "RED", width = 0, marker = "x")))
 			self.k_plot.add_curve(plot_curve(wvls_, k_, style = plot_curve_style(colour = "RED", width = 0, marker = "x")))
 		
@@ -2499,7 +2499,7 @@ class material_mixture_table_dialog(material_mixture_dialog):
 				# avoid plot update failures that might happen if the first
 				# mixture is not 0, or if the mixtures are not in order. This only
 				# applies to the modified material used internally for plotting.
-				X = range(len(good_mixtures))
+				X = list(range(len(good_mixtures)))
 				
 				N_ = [N[i_mix] for i_mix in good_mixtures]
 				
@@ -2789,7 +2789,7 @@ class material_mixture_Cauchy_dialog(material_mixture_dialog):
 			# avoid plot update failures that might happen if the first
 			# mixture is not 0, or if the mixtures are not in order. This only
 			# applies to the modified material used internally for plotting.
-			X = range(len(A))
+			X = list(range(len(A)))
 			
 			self.modified_material.set_properties(X, A, B, C, A_k, exponent, edge)
 			material_mixture_dialog.update_plots(self)
@@ -3091,7 +3091,7 @@ class material_mixture_Sellmeier_dialog(material_mixture_dialog):
 			# avoid plot update failures that might happen if the first
 			# mixture is not 0, or if the mixtures are not in order. This only
 			# applies to the modified material used internally for plotting.
-			X = range(len(B1))
+			X = list(range(len(B1)))
 			
 			self.modified_material.set_properties(X, B1, C1, B2, C2, B3, C3, A_k, exponent, edge)
 			material_mixture_dialog.update_plots(self)

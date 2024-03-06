@@ -470,7 +470,7 @@ class stack_dialog(layer_dialog):
 		self.formula_box.SetValue(stack)
 		
 		for i in range(len(materials)):
-			symbol = materials.keys()[i]
+			symbol = list(materials.keys())[i]
 			self.symbol_boxes[i].SetValue(symbol)
 			self.material_boxes[i].SetValue(materials[symbol][0])
 			self.choose_material(i)
@@ -686,7 +686,7 @@ class formula_validator(wx.PyValidator):
 		# Try to interpret the stack formula.
 		try:
 			analyse_stack_formula(answer)
-		except stack_error, error:
+		except stack_error as error:
 			if not wx.Validator_IsSilent():
 				wx.Bell()
 			window.SetFocus()
@@ -721,7 +721,7 @@ class formula_validator(wx.PyValidator):
 		# Try to interpret the stack formula.
 		try:
 			analyse_stack_formula(answer)
-		except stack_error, error:
+		except stack_error as error:
 			if not wx.Validator_IsSilent():
 				wx.Bell()
 			window.SetFocus()

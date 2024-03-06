@@ -31,7 +31,7 @@ import release
 
 title = "OpenFilters %s" % release.VERSION
 
-message = u"""OpenFilters is a software for the design of interference optical filters. It was written by Stéphane Larouche while he was a graduate student at École polytechnique de Montréal under the supervision of Professor Ludvik Martinu.
+message = """OpenFilters is a software for the design of interference optical filters. It was written by Stéphane Larouche while he was a graduate student at École polytechnique de Montréal under the supervision of Professor Ludvik Martinu.
 
 The latest version of OpenFilters is available at http://www.polymtl.ca/larfis. All questions, bug reports, and comments should be sent to OpenFilters@polymtl.ca.
 
