@@ -52,63 +52,82 @@ import export
 import abeles
 import moremath
 
-from GUI_filter_grid import filter_grid
-from GUI_layer_grid import layer_grid
-from GUI_target_grid import target_grid
-from GUI_targets import reflection_target_dialog,\
-                        transmission_target_dialog,\
-                        absorption_target_dialog,\
-                        reflection_spectrum_target_dialog,\
-                        transmission_spectrum_target_dialog,\
-                        absorption_spectrum_target_dialog,\
-                        reflection_phase_target_dialog,\
-                        transmission_phase_target_dialog,\
-                        reflection_phase_spectrum_target_dialog,\
-                        transmission_phase_spectrum_target_dialog,\
-                        reflection_GD_target_dialog,\
-                        transmission_GD_target_dialog,\
-                        reflection_GD_spectrum_target_dialog,\
-                        transmission_GD_spectrum_target_dialog,\
-                        reflection_GDD_target_dialog,\
-                        transmission_GDD_target_dialog,\
-                        reflection_GDD_spectrum_target_dialog,\
-                        transmission_GDD_spectrum_target_dialog,\
-                        reflection_color_target_dialog,\
-                        transmission_color_target_dialog,\
-                        read_target_from_file_dialog
-from GUI_filter_properties import filter_property_dialog
-from GUI_layer_dialogs import simple_layer_dialog,\
-                              import_layer_dialog,\
-                              remove_layer_dialog,\
-                              import_layer_error
-from GUI_stack import stack_dialog
-from GUI_calculate import calculate_reflection_dialog,\
-                          calculate_transmission_dialog,\
-                          calculate_absorption_dialog,\
-                          calculate_ellipsometry_dialog,\
-                          calculate_reflection_phase_dialog,\
-                          calculate_transmission_phase_dialog,\
-                          calculate_reflection_GD_dialog,\
-                          calculate_transmission_GD_dialog,\
-                          calculate_reflection_GDD_dialog,\
-                          calculate_transmission_GDD_dialog,\
-                          calculate_color_dialog,\
-                          calculate_color_trajectory_dialog,\
-                          calculate_admittance_dialog,\
-                          calculate_circle_dialog,\
-                          calculate_electric_field_dialog,\
-                          calculate_reflection_monitoring_dialog,\
-                          calculate_transmission_monitoring_dialog,\
-                          calculate_ellipsometry_monitoring_dialog
-from GUI_preproduction import random_errors_dialog
-from GUI_optimization import optimization_Fourier_dialog,\
-                             optimization_refinement_dialog,\
-                             optimization_needles_dialog,\
-                             optimization_steps_dialog
-from GUI_materials import user_material_directory_dialog,\
-                          manage_materials_dialog
-from GUI_color import color_window
-import GUI_plot
+from .GUI_filter_grid import filter_grid
+from .GUI_layer_grid import layer_grid
+from .GUI_target_grid import target_grid
+
+from .GUI_targets import (
+    reflection_target_dialog,
+    transmission_target_dialog,
+    absorption_target_dialog,
+    reflection_spectrum_target_dialog,
+    transmission_spectrum_target_dialog,
+    absorption_spectrum_target_dialog,
+    reflection_phase_target_dialog,
+    transmission_phase_target_dialog,
+    reflection_phase_spectrum_target_dialog,
+    transmission_phase_spectrum_target_dialog,
+    reflection_GD_target_dialog,
+    transmission_GD_target_dialog,
+    reflection_GD_spectrum_target_dialog,
+    transmission_GD_spectrum_target_dialog,
+    reflection_GDD_target_dialog,
+    transmission_GDD_target_dialog,
+    reflection_GDD_spectrum_target_dialog,
+    transmission_GDD_spectrum_target_dialog,
+    reflection_color_target_dialog,
+    transmission_color_target_dialog,
+    read_target_from_file_dialog
+)
+
+from .GUI_filter_properties import filter_property_dialog
+
+from .GUI_layer_dialogs import (
+    simple_layer_dialog,
+    import_layer_dialog,
+    remove_layer_dialog,
+    import_layer_error
+)
+
+from .GUI_stack import stack_dialog
+
+from .GUI_calculate import (
+    calculate_reflection_dialog,
+    calculate_transmission_dialog,
+    calculate_absorption_dialog,
+    calculate_ellipsometry_dialog,
+    calculate_reflection_phase_dialog,
+    calculate_transmission_phase_dialog,
+    calculate_reflection_GD_dialog,
+    calculate_transmission_GD_dialog,
+    calculate_reflection_GDD_dialog,
+    calculate_transmission_GDD_dialog,
+    calculate_color_dialog,
+    calculate_color_trajectory_dialog,
+    calculate_admittance_dialog,
+    calculate_circle_dialog,
+    calculate_electric_field_dialog,
+    calculate_reflection_monitoring_dialog,
+    calculate_transmission_monitoring_dialog,
+    calculate_ellipsometry_monitoring_dialog
+)
+
+from .GUI_preproduction import random_errors_dialog
+
+from .GUI_optimization import (
+    optimization_Fourier_dialog,
+    optimization_refinement_dialog,
+    optimization_needles_dialog,
+    optimization_steps_dialog
+)
+
+from .GUI_materials import (
+   user_material_directory_dialog,
+   manage_materials_dialog
+)
+
+from .GUI_color import color_window
+from . import GUI_plot
 
 
 

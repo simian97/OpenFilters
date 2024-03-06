@@ -30,8 +30,13 @@ import materials
 import color
 import graded
 
-from GUI_validators import int_validator, float_validator, material_validator,\
-                           illuminant_validator, observer_validator
+from .GUI_validators import (
+    int_validator,
+    float_validator,
+    material_validator,
+    illuminant_validator,
+    observer_validator
+)
 
 
 

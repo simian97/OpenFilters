@@ -29,7 +29,7 @@ from definitions import *
 import materials
 import graded
 
-from GUI_validators import int_validator, float_validator, material_validator
+from .GUI_validators import int_validator, float_validator, material_validator
 
 
 ADD = 0

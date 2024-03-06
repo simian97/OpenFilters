@@ -35,7 +35,7 @@ import config
 import targets
 import color
 
-from GUI_validators import float_validator, int_validator
+from .GUI_validators import float_validator, int_validator
 
 
 
