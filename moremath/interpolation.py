@@ -46,7 +46,7 @@
 import math
 import array
 
-from roots import roots_cubic
+from .roots import roots_cubic
 
 
 

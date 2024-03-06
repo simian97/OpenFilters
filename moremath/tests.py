@@ -309,7 +309,7 @@ if "Levenberg_Marquardt" in tests:
 		
  		# Init the Levenberg-Marquardt method.
 		my_optimizer = Levenberg_Marquardt.Levenberg_Marquardt(f, df, b, Y, sigma, X)
- 		my_optimizer.set_stop_criteria(min_gradient, acceptable_chi_2, min_chi_2_change)
+		my_optimizer.set_stop_criteria(min_gradient, acceptable_chi_2, min_chi_2_change)
  		my_optimizer.prepare()
 		
 		start_time = time.clock()

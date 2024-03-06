@@ -27,9 +27,9 @@
 
 from math import sqrt
 
-from linear_algebra import matrix_error
-import limits
-import QR
+from .linear_algebra import matrix_error
+from . import limits
+from . import QR
 
 
 
