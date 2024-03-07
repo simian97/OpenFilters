@@ -225,8 +225,8 @@ class module(object):
 			submodule_name = "?????"
 			try:
 				submodule_name = submodule_description[0]
-				exec(("submodule_function = self.module." + submodule_description[1]))
-				exec(("submodule_dialog = self.module." + submodule_description[2]))
+				submodule_function = self.module.__dict__[submodule_description[1]]
+				submodule_dialog = self.module.__dict__[submodule_description[2]]
 				self.submodules.append(submodule(submodule_name, submodule_function, submodule_dialog))
 			except (AttributeError, IndexError):
 				self.error = True
