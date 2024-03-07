@@ -65,7 +65,7 @@ class optimization_Fourier(optimization):
 		  filter             the filter being optimized;
 		  targets            the targets used in the optimization;
 		  parent             (optional) the user interface used to do the
-		                     optimization.
+							 optimization.
 		
 		If given, the parent must implement an update method taking two
 		arguments (working, status)."""
@@ -568,14 +568,23 @@ class optimization_Fourier(optimization):
 		
 		else:
 			self.status = Levenberg_Marquardt.DELTA_IS_TOO_SMALL
+
+		# Stop if the solution is not improving.
+		if self.status != Levenberg_Marquardt.IMPROVING:
+			self.stop_criteria_met = True
+
+		# Verify if the maximum number of iterations has been reached (when
+		# specified).
+		if self.max_iterations and self.iteration >= self.max_iterations:
+			self.max_iterations_reached = True
  		
  		# Stop if the solution is not improving.
- 		if self.status != Levenberg_Marquardt.IMPROVING:
+		if self.status != Levenberg_Marquardt.IMPROVING:
 			self.stop_criteria_met = True
  		
  		# Verify if the maximum number of iterations has been reached (when
  		# specified).
- 		if self.max_iterations and self.iteration >= self.max_iterations:
+		if self.max_iterations and self.iteration >= self.max_iterations:
  			self.max_iterations_reached = True
 	
 	
