@@ -65,36 +65,38 @@ FULL_SCREEN = 2
 NO_REDRAW = 3
 
 FIGURE_WILDCARD = "Windows bitmap file (*.bmp)|*.bmp|"\
-                  "JPEG file (*.jpg)|*.jpg|"\
-                  "PNG file (*.png)|*.png|"\
-                  "TIFF file (*.tif)|*.tif"
+				  "JPEG file (*.jpg)|*.jpg|"\
+				  "PNG file (*.png)|*.png|"\
+				  "TIFF file (*.tif)|*.tif"
 BITMAP_TYPES = {".bmp": wx.BITMAP_TYPE_BMP,
-                ".jpg": wx.BITMAP_TYPE_JPEG,
-                ".png": wx.BITMAP_TYPE_PNG,
-                ".tif": wx.BITMAP_TYPE_TIF}
+				".jpg": wx.BITMAP_TYPE_JPEG,
+				".png": wx.BITMAP_TYPE_PNG,
+				".tif": wx.BITMAP_TYPE_TIF}
+
 
 
 # The colours used in the plots.		
 colour_database = ["BLUE",
-                   "RED",
-                   "GREEN",
-                   "ORANGE",
-                   "YELLOW",
-                   "PURPLE",
-                   "SEA GREEN",
-                   "GOLDENROD",
-                   "NAVY",
-                   "MAGENTA",
-                   "DARK GREEN",
-                   "GOLD",
-                   "SLATE BLUE",
-                   "PINK",
-                   "CYAN",
-                   "CORAL"
-                   "VIOLET",
-                   "CORNFLOWER BLUE",
-                   "BLACK",
-                   "GREY"]
+				   "RED",
+				   "GREEN",
+				   "ORANGE",
+				   "YELLOW",
+				   "PURPLE",
+				   "SEA GREEN",
+				   "GOLDENROD",
+				   "NAVY",
+				   "MAGENTA",
+				   "DARK GREEN",
+				   "GOLD",
+				   "SLATE BLUE",
+				   "PINK",
+				   "CYAN",
+				   "CORAL"
+				   "VIOLET",
+				   "CORNFLOWER BLUE",
+				   "BLACK",
+				   "GREY"]
+
 
 # Constants related to the separation of the ticks.
 absolute_max_nb_of_ticks = 15
@@ -192,7 +194,7 @@ def set_use_buffered_drawing(new_setting):
 	buffered drawing. It affects all plots created AFTER the function
 	has been called. This function takes a single input argument:
 	  new_setting          a boolean indicating to use buffered drawing
-	                       or not
+						   or not
 	and it returns a boolean indicating if the setting was changed
 	(True), or if it already had the value of the new setting (False)."""
 	
@@ -244,19 +246,19 @@ class plot_curve_style(object):
 		
 		This method takes 4 optional arguments:
 		  colour             (optional) a string defining the colour of the
-		                     curve, this string must be a colour recognized
-		                     by wxPython, if omitted, the colour selection
-		                     will be handled by the plot in order to avoid
-		                     redundancy;
+							 curve, this string must be a colour recognized
+							 by wxPython, if omitted, the colour selection
+							 will be handled by the plot in order to avoid
+							 redundancy;
 		  width              (optional) the width of pen used to draw the
-		                     curve, the default value is 1;
+							 curve, the default value is 1;
 		  marker             (optional) a character describing the marker
-		                     used in the drawing of the curve, "" for no
-		                     symbol, "+" or "x" for crosses, "^" or "v"
-		                     for half crosses, or "o" for circles, by
-		                     default no marker is used;
+							 used in the drawing of the curve, "" for no
+							 symbol, "+" or "x" for crosses, "^" or "v"
+							 for half crosses, or "o" for circles, by
+							 default no marker is used;
 		  marker_size        (optional) the size of the marker, by default
-		                     the size is 6."""
+							 the size is 6."""
 		
 		if marker_size > max_marker_size:
 			raise ValueError("Marker size larger than maximum value")
@@ -306,19 +308,19 @@ class plot_curve_segmented_style(object):
 		
 		This method takes 5 optional arguments:
 		  colour_1, colour_2 (optional) strings defining the colours of the
-		                     curve, these strings must be colours
-		                     recognized by wxPython, if omitted, the
-		                     colour selection will be handled by the plot
-		                     in order to avoid redundancy;
+							 curve, these strings must be colours
+							 recognized by wxPython, if omitted, the
+							 colour selection will be handled by the plot
+							 in order to avoid redundancy;
 		  width              (optional) the width of pen used to draw the
-		                     curve, the default value is 1;
+							 curve, the default value is 1;
 		  marker             (optional) a character describing the marker
-		                     used in the drawing of the curve, "" for no
-		                     symbol, "+" or "x" for crosses, "^" or "v"
-		                     for half crosses, or "o" for circles, by
-		                     default no marker is used;
+							 used in the drawing of the curve, "" for no
+							 symbol, "+" or "x" for crosses, "^" or "v"
+							 for half crosses, or "o" for circles, by
+							 default no marker is used;
 		  marker_size        (optional) the size of the marker, by default
-		                     the value is 6."""
+							 the value is 6."""
 		
 		if marker_size > max_marker_size:
 			raise ValueError("Marker size larger than maximum value")
@@ -373,21 +375,21 @@ class plot_curve(object):
 		
 		This method takes 6 optional arguments:
 		  x, y               (optional) x and y vectors of the same length
-		                     describing the curve, default values are empty
-		                     lists;
+							 describing the curve, default values are empty
+							 lists;
 		  size               (optional) number of points in the curve, by
-		                     default the value is -1 and the number of
-		                     points is adjusted to fit the x and y vectors;
+							 default the value is -1 and the number of
+							 points is adjusted to fit the x and y vectors;
 		  name               (optional) a string giving the name of the
-		                     curve that is used for the legend and similar
-		                     stuff, by default the curves does not have a
-		                     name;
+							 curve that is used for the legend and similar
+							 stuff, by default the curves does not have a
+							 name;
 		  policy             (optional) APPEND or REPLACE (see below), by
-		                     default the policy is to append;
+							 default the policy is to append;
 		  style              (optional) an instance of the
-		                     plot_curve_style class describing the style
-		                     of the curve, by default the default style
-		                     is choosen.
+							 plot_curve_style class describing the style
+							 of the curve, by default the default style
+							 is choosen.
 		
 		This class can be used to create static curve. In that case
 		simply initialize it with the appropriate x and y vectors. It can
@@ -459,8 +461,7 @@ class plot_curve(object):
 					self.y = array.array("d", y[-1-size:-1])
 					self.nb_points = size
 					self.size = size
-	
-	
+
 	######################################################################
 	#                                                                    #
 	# set_name                                                           #
@@ -468,13 +469,13 @@ class plot_curve(object):
 	######################################################################
 	def set_name(self, name):
 		"""Set or replace the name of the curve
-		
+
 		This method takes a single argument:
 		  name               the name of the curve."""
-		
+
 		self.name = name
-	
-	
+
+
 	######################################################################
 	#                                                                    #
 	# get_name                                                           #
@@ -527,8 +528,8 @@ class plot_curve(object):
 		This method takes 2 arguments:
 		  colour_database    a list of colour names;
 		  colour_usage       a list of the number of times the colour in
-		                     the database are used in the plot containing
-		                     the curve.
+							 the database are used in the plot containing
+							 the curve.
 		
 		This method is automatically called by the plot method when
 		appropriate. You don't need to call it yourself."""
@@ -576,15 +577,16 @@ class plot_curve(object):
 		
 		This method takes 5 arguments:
 		  DC                 the device context on which to draw the
-		                     legend;
+							 legend;
 		  x_left, y_button   the starting point of the legend line;
 		  x_right, y_top     the ending point of the legend line.
 		
 		It draws a line and eventually a marker according to the curve
 		style."""
 		
-		DC.SetPen(wx.Pen(wx.NamedColour(self.style.colour), self.style.width))
-		DC.SetBrush(wx.Brush(wx.NamedColour(self.style.colour), wx.TRANSPARENT))
+		colour = wx.ColourDatabase().Find(self.style.colour)
+		DC.SetPen(wx.Pen(colour, self.style.width))
+		DC.SetBrush(wx.Brush(colour, wx.TRANSPARENT))
 		
 		if self.style.width > 0:
 			DC.DrawLine(x_left, y_bottom, x_right, y_top)
@@ -620,16 +622,16 @@ class plot_curve(object):
 		This method takes 5 to 9 arguments:
 		  DC                 the device context on which to draw the curve;
 		  shift_x            position of the x origin on the device
-		                     context;
+							 context;
 		  scale_x            scaling factor of the x axis;
 		  shift_y            position of the y origin on the device
-		                     context;
+							 context;
 		  scale_y            scaling factor of the x axis;
 		  nb_points          (optional) the number of points to draw, if
-		                     the value is 0 (default), all points are
-		                     drawn (see below for details);
+							 the value is 0 (default), all points are
+							 drawn (see below for details);
 		  min_x_value        (optional) the value of x on the left of the
-		                     figure (see below for details);
+							 figure (see below for details);
 		  axis_x             (optional) LINEAR (default) or LOG;
 		  axis_y             (optional) LINEAR (default) or LOG.
 		
@@ -643,8 +645,9 @@ class plot_curve(object):
 		time, and you only want to show a recently acquired part of the
 		curve."""
 		
-		DC.SetPen(wx.Pen(wx.NamedColour(self.style.colour), self.style.width))
-		DC.SetBrush(wx.Brush(wx.NamedColour(self.style.colour), wx.TRANSPARENT))
+		colour = wx.ColourDatabase().Find(self.style.colour)
+		DC.SetPen(wx.Pen(colour, self.style.width))
+		DC.SetBrush(wx.Brush(colour, wx.TRANSPARENT))
 		
 		# Calculate half the marker size.
 		half_size = limited_int(0.5*self.style.marker_size)
@@ -792,7 +795,7 @@ class plot_curve(object):
 		
 		This method takes 2 arguments:
 		  x, y               vectors of x and y values to replace the
-		                     present curve.
+							 present curve.
 		
 		If the policy is REPLACE and the number of points in x and y is
 		larger than the size of the curve, only the last points will be
@@ -975,15 +978,15 @@ class plot_curve_segmented(object):
 		
 		This method takes 2 to 4 arguments:
 		  Xs, Ys             lists of x and y vectors of the same lengths
-		                     describing the segments of the curve;
+							 describing the segments of the curve;
 		  name               (optional) a string giving the name of the
-		                     curve that is used for the legend and similar
-		                     stuff, by default the curves does not have a
-		                     name;
+							 curve that is used for the legend and similar
+							 stuff, by default the curves does not have a
+							 name;
 		  style              (optional) an instance of the
-		                     plot_curve_segmented_style class describing
-		                     the style of the curve, by default the default
-		                     style is choosen."""
+							 plot_curve_segmented_style class describing
+							 the style of the curve, by default the default
+							 style is choosen."""
 		
 		self.name = name
 		
@@ -1062,8 +1065,8 @@ class plot_curve_segmented(object):
 		This method takes 2 arguments:
 		  colour_database    a list of colour names;
 		  colour_usage       a list of the number of times the colour in
-		                     the database are used in the plot containing
-		                     the curve.
+							 the database are used in the plot containing
+							 the curve.
 		
 		This method is automatically called by the plot method when
 		appropriate. You don't need to call it yourself."""
@@ -1139,7 +1142,7 @@ class plot_curve_segmented(object):
 		
 		This method takes 5 arguments:
 		  DC                 the device context on which to draw the
-		                     legend;
+							 legend;
 		  x_left, y_button   the starting point of the legend line;
 		  x_right, y_top     the ending point of the legend line.
 		
@@ -1150,8 +1153,9 @@ class plot_curve_segmented(object):
 		y = limited_int(0.5*(y_bottom+y_top))
 		half_size = limited_int(0.5*self.style.marker_size)
 		
-		DC.SetPen(wx.Pen(wx.NamedColour(self.style.colour_1), self.style.width))
-		DC.SetBrush(wx.Brush(wx.NamedColour(self.style.colour_1), wx.TRANSPARENT))
+		colour = wx.ColourDatabase().Find(self.style.colour_1)
+		DC.SetPen(wx.Pen(colour, self.style.width))
+		DC.SetBrush(wx.Brush(colour, wx.TRANSPARENT))
 		
 		DC.DrawLine(x_left, y_bottom, x, y)
 		
@@ -1170,8 +1174,9 @@ class plot_curve_segmented(object):
 		elif self.style.marker == "o":
 			DC.DrawCircle(x, y, half_size)
 		
-		DC.SetPen(wx.Pen(wx.NamedColour(self.style.colour_2), self.style.width))
-		DC.SetBrush(wx.Brush(wx.NamedColour(self.style.colour_2), wx.TRANSPARENT))
+		colour = wx.ColourDatabase().Find(self.style.colour_2)
+		DC.SetPen(wx.Pen(colour, self.style.width))
+		DC.SetBrush(wx.Brush(colour, wx.TRANSPARENT))
 		
 		DC.DrawLine(x, y, x_right, y_top)
 	
@@ -1187,16 +1192,16 @@ class plot_curve_segmented(object):
 		This method takes 5 to 9 arguments:
 		  DC                 the device context on which to draw the curve;
 		  shift_x            position of the x origin on the device
-		                     context;
+							 context;
 		  scale_x            scaling factor of the x axis;
 		  shift_y            position of the y origin on the device
-		                     context;
+							 context;
 		  scale_y            scaling factor of the x axis;
 		  nb_points          (optional) the number of points to draw, if
-		                     the value is 0 (default), all points are
-		                     drawn (not used);
+							 the value is 0 (default), all points are
+							 drawn (not used);
 		  min_x_value        (optional) the value of x on the left of the
-		                     figure (not used);
+							 figure (not used);
 		  axis_x             (optional) LINEAR (default) or LOG;
 		  axis_y             (optional) LINEAR (default) or LOG.
 		
@@ -1208,11 +1213,13 @@ class plot_curve_segmented(object):
 		for i in range(len(self.Xs)):
 			if self.Xs[i]:
 				if round(0.5*i) == 0.5*i:
-					DC.SetPen(wx.Pen(wx.NamedColour(self.style.colour_1), self.style.width))
-					DC.SetBrush(wx.Brush(wx.NamedColour(self.style.colour_1), wx.TRANSPARENT))
+					colour = wx.ColourDatabase().Find(self.style.colour_1)
+					DC.SetPen(wx.Pen(colour, self.style.width))
+					DC.SetBrush(wx.Brush(colour, wx.TRANSPARENT))
 				else:
-					DC.SetPen(wx.Pen(wx.NamedColour(self.style.colour_2), self.style.width))
-					DC.SetBrush(wx.Brush(wx.NamedColour(self.style.colour_2), wx.TRANSPARENT))
+					colour = wx.ColourDatabase().Find(self.style.colour_2)
+					DC.SetPen(wx.Pen(colour, self.style.width))
+					DC.SetBrush(wx.Brush(colour, wx.TRANSPARENT))
 				
 				if len(self.Xs[i]) > 0:
 					
@@ -1360,9 +1367,9 @@ class plot_curve_multiple(object):
 		This method takes 2 to 4 arguments:
 		  curves             a list of curves;
 		  name               (optional) a string giving the name of the
-		                     curve that is used for the legend and similar
-		                     stuff, by default the curves does not have a
-		                     name."""
+							 curve that is used for the legend and similar
+							 stuff, by default the curves does not have a
+							 name."""
 		
 		self.name = name
 		
@@ -1448,8 +1455,8 @@ class plot_curve_multiple(object):
 		This method takes 2 arguments:
 		  colour_database    a list of colour names;
 		  colour_usage       a list of the number of times the colour in
-		                     the database are used in the plot containing
-		                     the curve.
+							 the database are used in the plot containing
+							 the curve.
 		
 		It replaces the style of all the curves of the multiple curve
 		with that of the first curve and the automatically selected
@@ -1513,7 +1520,7 @@ class plot_curve_multiple(object):
 		
 		This method takes 5 arguments:
 		  DC                 the device context on which to draw the
-		                     legend;
+							 legend;
 		  x_left, y_button   the starting point of the legend line;
 		  x_right, y_top     the ending point of the legend line.
 		
@@ -1534,16 +1541,16 @@ class plot_curve_multiple(object):
 		This method takes 5 to 9 arguments:
 		  DC                 the device context on which to draw the curve;
 		  shift_x            position of the x origin on the device
-		                     context;
+							 context;
 		  scale_x            scaling factor of the x axis;
 		  shift_y            position of the y origin on the device
-		                     context;
+							 context;
 		  scale_y            scaling factor of the x axis;
 		  nb_points          (optional) the number of points to draw, if
-		                     the value is 0 (default), all points are
-		                     drawn;
+							 the value is 0 (default), all points are
+							 drawn;
 		  min_x_value        (optional) the value of x on the left of the
-		                     figure;
+							 figure;
 		  axis_x             (optional) LINEAR (default) or LOG;
 		  axis_y             (optional) LINEAR (default) or LOG.
 		
@@ -1581,7 +1588,7 @@ class plot_curve_multiple(object):
 		This method takes 1 or 2 arguments:
 		  curve_nb           the number of the curve to select;
 		  select             (optional) a boolean indicating if the curve
-		                     is selected of unselected (by default True).
+							 is selected of unselected (by default True).
 		and returns a boolean indicating if the plot needs to be redrawn."""
 		
 		if self.selected_curves[curve_nb] == select:
@@ -1675,10 +1682,11 @@ class plot(wx.Window):
 			style              (optional) the window's style."""
 		
 		# Create the window
-		wx.Window.__init__(self, parent, id, size = size, style = style|wx.NO_FULL_REPAINT_ON_RESIZE)
-		
+		# wx.Window.__init__(self, parent, id, size = size, style = style|wx.NO_FULL_REPAINT_ON_RESIZE)
+		super().__init__(parent, id, size=size, style=style | wx.NO_FULL_REPAINT_ON_RESIZE)
+
 		# The plot uses the global settings for buffered drawing. But
-		# saves the setting locally so it can be changed betwen plots.
+		# saves the setting locally so it can be changed between plots.
 		self.use_buffered_drawing = use_buffered_drawing
 		
 		self.Bind(wx.EVT_SIZE, self.on_size)
@@ -1767,10 +1775,13 @@ class plot(wx.Window):
 		self.clicked_curve = 0
 		
 		# Create and initialize a buffer to avoir flicker.
-		self.width, self.height = self.GetClientSizeTuple()
-		self.buffer = wx.EmptyBitmap(self.width, self.height)
-	
-	
+		self.width, self.height = self.GetClientSize()
+		if self.width == 0:
+			self.width = 1
+		if self.height == 0:
+			self.height = 1
+		self.buffer = wx.Bitmap(self.width, self.height)
+
 	######################################################################
 	#                                                                    #
 	# set_clickable                                                      #
@@ -1781,7 +1792,7 @@ class plot(wx.Window):
 		
 		This method takes a single optional argument:
 		  clickable          (optional) a boolean indicating if the plot is
-		                     clickable, default value is True."""
+							 clickable, default value is True."""
 		
 		self.clickable = clickable
 	
@@ -1796,9 +1807,9 @@ class plot(wx.Window):
 		
 		This method takes a single optional argument:
 		  allow_remove_curve (optional) a boolean indicating if the user is
-		                     is allowed to remove curves using the context
-		                     menu shown when he right clicks, default value
-		                     is True."""
+							 is allowed to remove curves using the context
+							 menu shown when he right clicks, default value
+							 is True."""
 		
 		self.allow_remove_curve	= allow_remove_curve
 	
@@ -1854,7 +1865,7 @@ class plot(wx.Window):
 		
 		This method redraws the window (from a buffer) when a region was
 		damaged."""
-		
+
 		# If we use buffered drawing, we simply put on the screen what
 		# is already in the buffer.
 		if self.use_buffered_drawing:
@@ -1879,8 +1890,12 @@ class plot(wx.Window):
 		
 		This method redraws the window when its size changes."""
 		
-		self.width, self.height = self.GetClientSizeTuple()
-		self.buffer = wx.EmptyBitmap(self.width, self.height)
+		self.width, self.height = self.GetClientSize()
+		if self.width == 0:
+			self.width = 1
+		if self.height == 0:
+			self.width = 1
+		self.buffer = wx.Bitmap(self.width, self.height)
 		
 		self.update()
 	
@@ -1896,9 +1911,9 @@ class plot(wx.Window):
 		This method takes care of updating the plot for other methods. It
 		takes at least one argument:
 		  function           the function that must be called to update the
-		                     plot, by default it is draw all;
+							 plot, by default it is draw all;
 		  *args              all other arguments will be passed to the
-		                     function.
+							 function.
 		
 		Do not call this method directly, use update instead."""
 		
@@ -1911,11 +1926,11 @@ class plot(wx.Window):
 			DC = wx.MemoryDC()
 			DC.SelectObject(self.buffer)
 		
-		DC.BeginDrawing()
+		# DC.BeginDrawing()
 		
 		function(DC, *args)
 		
-		DC.EndDrawing()
+		# DC.EndDrawing()
 		
 		if not self.use_buffered_drawing:
 			wx.ClientDC(self).Blit(0, 0, self.width, self.height, DC, 0, 0)
@@ -1932,9 +1947,9 @@ class plot(wx.Window):
 		This method takes care of updating the plot for other methods. It
 		takes any number of arguments:
 		  function           (optional) the method that must be called to
-		                     update the plot, by default it is draw_all;
+							 update the plot, by default it is draw_all;
 		  *args              all other arguments will be passed to the
-		                     function."""
+							 function."""
 		
 		# On GTK, there are some issues if we update the windows before it
 		# is shown. So we use CallAfter.
@@ -2101,9 +2116,9 @@ class plot(wx.Window):
 		
 		This method takes 3 arguments:
 		  curve_nb           the number of the curve on which to add
-		                     points;
+							 points;
 		  x, y               vectors of the x and y values of the points to
-		                     add."""
+							 add."""
 		
 		x_min, x_max, y_min, y_max = self.curves[curve_nb].append_data(x, y)
 		
@@ -2229,8 +2244,8 @@ class plot(wx.Window):
 		  DC                 the device context on which to draw the curve;
 		  curve              the curve to draw
 		  nb_points          (optional) the number of points of the curve
-		                     to draw, if it is 0 (default) all the points
-		                     of the curve are drawn."""
+							 to draw, if it is 0 (default) all the points
+							 of the curve are drawn."""
 		
 		DC.SetClippingRegion(self.left_axe, self.top_axe, self.right_axe-self.left_axe+1, self.bottom_axe-self.top_axe+1)
 		
@@ -2347,7 +2362,7 @@ class plot(wx.Window):
 		
 		This method takes a single argument:
 		  grid               a boolean indicating if the grid must be shown
-		                     or not."""
+							 or not."""
 		
 		if grid != self.grid:
 			self.grid = grid
@@ -2383,8 +2398,8 @@ class plot(wx.Window):
 		
 		This method takes an optional argument:
 		  setting            (optional) AUTOMATIC or a 4 element vector
-		                     containing, in that order, the value of the
-		                     left, buttom, right, and top axes."""
+							 containing, in that order, the value of the
+							 left, buttom, right, and top axes."""
 		
 		if setting == AUTOMATIC:
 			self.automatic_axes = True
@@ -2412,7 +2427,7 @@ class plot(wx.Window):
 		
 		This method returns:
 		  automatic_axes                       a boolean indicating if the
-		                                       axes are automaticaly set;
+											   axes are automaticaly set;
 		  x_left, y_bottom, x_right, y_top     the value of the axes."""
 		
 		return self.automatic_axes, self.x_left, self.y_bottom, self.x_right, self.y_top
@@ -2472,15 +2487,15 @@ class plot(wx.Window):
 		4 drawing modes are possible:
 		  NO_FAST_DRAWING   no fast drawing;
 		  HALF_SCREEN       half screen mode - in this mode, when data
-		                    overflows the graph, the x axis is moved up by
-		                    half of it's range and the half part of the
-		                    curves still fitting in the new range is drawn;
+							overflows the graph, the x axis is moved up by
+							half of it's range and the half part of the
+							curves still fitting in the new range is drawn;
 		  FULL_SCREEN       full screen mode - in this mode, when data
-		                    overflows the graph, the x axis is moved up by
-		                    it's full range and no curve needs to be
-		                    redrawn;
+							overflows the graph, the x axis is moved up by
+							it's full range and no curve needs to be
+							redrawn;
 		  NO_REDRAW         no redraw mode - in this mode, the axis are
-		                    never changed and the data is never redrawn.
+							never changed and the data is never redrawn.
 		
 		For all the fast drawing modes, the axis must have been manually
 		set."""
@@ -2498,13 +2513,13 @@ class plot(wx.Window):
 		
 		This method takes a single argument:
 		  DC                 the device context on which to design the
-		                     legend."""
+							 legend."""
 		
 		if self.legend_position is None:
 			return
 		
 		# Get the size of the window.
-		(width, height) = self.GetClientSizeTuple()
+		(width, height) = self.GetClientSize()
 		
 		# Set the font.
 		font = DC.GetFont()
@@ -2589,9 +2604,10 @@ class plot(wx.Window):
 		
 		This method takes a single argument:
 		  DC                 the device context on which to design the
-		                     axes."""
+							 axes."""
 		
-		DC.SetPen(wx.Pen(wx.NamedColour("BLACK"), 1))
+		colour = wx.ColourDatabase().Find("BLACK")
+		DC.SetPen(wx.Pen(colour, 1))
 		
 		# Set the font.
 		font = DC.GetFont()
@@ -2600,7 +2616,7 @@ class plot(wx.Window):
 		DC.SetFont(font)
 		
 		# Get the size of the window.
-		(width, height) = self.GetClientSizeTuple()
+		(width, height) = self.GetClientSize()
 		
 		# Get the bounding box of the curves.
 		x_min, x_max, y_min, y_max = self.bounding_box()
@@ -3087,11 +3103,13 @@ class plot(wx.Window):
 					y_tick = math.log10(tick)
 				y_tick = limited_int(self.scale_y*(y_tick-self.shift_y))
 				# Draw the tick.
-				DC.SetPen(wx.Pen(wx.NamedColour("BLACK"), 1))
+				colour = wx.ColourDatabase().Find("BLACK")
+				DC.SetPen(wx.Pen(colour), 1)
 				DC.DrawLine(x_tick_left, y_tick, x_tick_right, y_tick)
 				# Draw the grid.
 				if self.grid:
-					DC.SetPen(wx.Pen(wx.NamedColour("LIGHT GREY"), 1))
+					colour = wx.ColourDatabase().Find("LIGHT GREY")
+					DC.SetPen(wx.Pen(colour, 1))
 					DC.DrawLine(self.left_axe, y_tick, self.right_axe, y_tick)
 				text_extent = DC.GetTextExtent(y_ticks_format_string % tick)
 				x_text_left = self.left_axe-half_font_size-text_extent[0]
@@ -3105,10 +3123,12 @@ class plot(wx.Window):
 				else:
 					x_tick = math.log10(tick)
 				x_tick = limited_int(self.scale_x*(x_tick-self.shift_x))
-				DC.SetPen(wx.Pen(wx.NamedColour("BLACK"), 1))
+				colour = wx.ColourDatabase().Find("BLACK")
+				DC.SetPen(wx.Pen(colour, 1))
 				DC.DrawLine(x_tick, y_tick_bottom, x_tick, y_tick_top)
 				if self.grid:
-					DC.SetPen(wx.Pen(wx.NamedColour("LIGHT GREY"), 1))
+					colour = wx.ColourDatabase().Find("LIGHT GREY")
+					DC.SetPen(wx.Pen(colour, 1))
 					DC.DrawLine(x_tick, self.bottom_axe, x_tick, self.top_axe)
 				text_extent = DC.GetTextExtent(x_ticks_format_string % tick)
 				x_text_left = x_tick - limited_int(0.5*text_extent[0])
@@ -3117,7 +3137,8 @@ class plot(wx.Window):
 		
 		# Drawing the axes. We draw the axis after the ticks and the grid
 		# because the grid makes grey lines on the axes.
-		DC.SetPen(wx.Pen(wx.NamedColour("BLACK"), 1))
+		colour = wx.ColourDatabase().Find("BLACK")
+		DC.SetPen(wx.Pen(colour, 1))
 		DC.DrawLine(self.left_axe, self.bottom_axe, self.right_axe+1, self.bottom_axe)
 		DC.DrawLine(self.left_axe, self.top_axe, self.right_axe+1, self.top_axe)
 		DC.DrawLine(self.left_axe, self.bottom_axe, self.left_axe, self.top_axe-1)
@@ -3813,13 +3834,13 @@ class properties_dialog(wx.Dialog):
 		
 		This method returns:
 		  automatic                     a boolean indicating if the axes
-		                                must be set automatically or
-		                                manually;
+										must be set automatically or
+										manually;
 		  x_from, y_from, x_to, y_to    the limits of the x and y axes (for
-		                                manual axes);
+										manual axes);
 		  x_scaling, y_scaling          the scaling of x and y axes;
 		  grid                          a boolean indicating whether to
-		                                show a grid or not."""
+										show a grid or not."""
 		
 		if self.auto_button.GetValue():
 			automatic = True
