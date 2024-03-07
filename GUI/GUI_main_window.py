@@ -33,7 +33,7 @@ try:
 	import threading
 except ImportError:
 	pass
-import ConfigParser
+import configparser
 
 import wx
 
@@ -378,14 +378,14 @@ class main_window(wx.Frame):
 		try:
 			last_used_directory = self.user_config.get("GUI", "lastuseddirectory").decode('utf-8')
 			os.chdir(last_used_directory)
-		except (ConfigParser.NoOptionError, OSError):
+		except (configparser.NoOptionError, OSError):
 			os.chdir(os.path.expanduser("~"))
 		
 		self.recently_opened_projects = []
 		for i in range(config.NB_RECENTLY_OPENED_PROJECTS):
 			try:
 				self.recently_opened_projects.append(self.user_config.get("GUI", "recentlyopenedproject%i" % i).decode('utf-8'))
-			except ConfigParser.NoOptionError:
+			except configparser.NoOptionError:
 				break
 		
 		if not self.user_config.has_section("Directories"):
@@ -393,7 +393,7 @@ class main_window(wx.Frame):
 		
 		try:
 			self.user_material_directory = self.user_config.get("Directories", "usermaterialdirectory").decode('utf-8')
-		except (ConfigParser.NoOptionError):
+		except (configparser.NoOptionError):
 			self.user_material_directory = None
 	
 	
