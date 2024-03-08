@@ -376,7 +376,7 @@ class main_window(wx.Frame):
 			self.user_config.add_section("GUI")
 		
 		try:
-			last_used_directory = self.user_config.get("GUI", "lastuseddirectory").decode('utf-8')
+			last_used_directory = self.user_config.get("GUI", "lastuseddirectory")
 			os.chdir(last_used_directory)
 		except (configparser.NoOptionError, OSError):
 			os.chdir(os.path.expanduser("~"))
@@ -384,7 +384,7 @@ class main_window(wx.Frame):
 		self.recently_opened_projects = []
 		for i in range(config.NB_RECENTLY_OPENED_PROJECTS):
 			try:
-				self.recently_opened_projects.append(self.user_config.get("GUI", "recentlyopenedproject%i" % i).decode('utf-8'))
+				self.recently_opened_projects.append(self.user_config.get("GUI", "recentlyopenedproject%i" % i))
 			except configparser.NoOptionError:
 				break
 		
@@ -392,7 +392,7 @@ class main_window(wx.Frame):
 			self.user_config.add_section("Directories")
 		
 		try:
-			self.user_material_directory = self.user_config.get("Directories", "usermaterialdirectory").decode('utf-8')
+			self.user_material_directory = self.user_config.get("Directories", "usermaterialdirectory")
 		except (configparser.NoOptionError):
 			self.user_material_directory = None
 	
