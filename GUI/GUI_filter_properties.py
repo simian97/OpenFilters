@@ -45,7 +45,7 @@ from .GUI_validators import (
 # filter_property_dialog_validator                                     #
 #                                                                      #
 ########################################################################
-class filter_property_dialog_validator(wx.PyValidator):
+class filter_property_dialog_validator(wx.Validator):
 	"""Validator for the properties dialog"""
 	
 	
@@ -101,26 +101,31 @@ class filter_property_dialog_validator(wx.PyValidator):
 		and it returns True if the range of wavelengths is correctly
 		defined or False otherwise."""
 		
+		property_dialog = parent.Parent
 		# Verify that to_wavelength is larger that from_wavelength.
-		from_wavelength = float(parent.from_wavelength_box.GetValue())
-		to_wavelength = float(parent.to_wavelength_box.GetValue())
+		from_wavelength = float(property_dialog.from_wavelength_box.GetValue())
+		to_wavelength = float(property_dialog.to_wavelength_box.GetValue())
 		if to_wavelength < from_wavelength:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
-			parent.to_wavelength_box.SetFocus()
-			parent.to_wavelength_box.SetSelection(0, 1000)
-			parent.Refresh()
+				msg = "lower wavelength must be less than the upper wavelength"
+				wx.MessageBox(msg, "Wavelength Error", style=wx.OK)
+			property_dialog.to_wavelength_box.SetFocus()
+			property_dialog.to_wavelength_box.SetSelection(0, 1000)
+			property_dialog.Refresh()
 			return False
 		
 		# Verify that by_wavelength is smaller than the difference between
 		# from_wavelength and to_wavelength.
-		by_wavelength = float(parent.by_wavelength_box.GetValue())
+		by_wavelength = float(property_dialog.by_wavelength_box.GetValue())
 		if by_wavelength >= (to_wavelength - from_wavelength):
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
-			parent.by_wavelength_box.SetFocus()
-			parent.by_wavelength_box.SetSelection(0, 1000)
-			parent.Refresh()
+				msg = "wavelength step must be equal to or greater than the difference between the upper and lower wavelengths"
+				wx.MessageBox(msg, "Wavelength Error", style=wx.OK)
+			property_dialog.by_wavelength_box.SetFocus()
+			property_dialog.by_wavelength_box.SetSelection(0, 1000)
+			property_dialog.Refresh()
 			return False
 		
 		return True
