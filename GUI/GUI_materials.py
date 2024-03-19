@@ -3755,7 +3755,7 @@ class material_mixture_constant_validator(wx.PyValidator):
 			previous_x = x
 		
 		if error:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
 			window.SetFocus()
 			window.Refresh()
@@ -3895,7 +3895,7 @@ class material_mixture_table_validator(wx.PyValidator):
 				if error: break
 		
 		if error:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
 			window.SetFocus()
 			window.Refresh()
@@ -4066,7 +4066,7 @@ class material_mixture_Cauchy_validator(wx.PyValidator):
 			previous_x = x
 		
 		if error:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
 			window.SetFocus()
 			window.Refresh()
@@ -4213,7 +4213,7 @@ class material_mixture_Sellmeier_validator(wx.PyValidator):
 			previous_x = x
 		
 		if error:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
 			window.SetFocus()
 			window.Refresh()
@@ -4313,7 +4313,7 @@ class new_material_name_validator(wx.PyValidator):
 			event.Skip()
 			return
 		
-		if not wx.Validator_IsSilent(): wx.Bell()
+		if not wx.Validator.IsSilent(): wx.Bell()
 		
 		# Since event.Skip() is not called, the event is not passed to the
 		# control.
@@ -4349,7 +4349,7 @@ class new_material_name_validator(wx.PyValidator):
 			error = True
 		
 		if error:
-			if not wx.Validator_IsSilent(): wx.Bell()
+			if not wx.Validator.IsSilent(): wx.Bell()
 			window.SetFocus()
 			window.SetSelection(0, len(answer))
 			window.Refresh()
@@ -4435,7 +4435,7 @@ class user_directory_validator(wx.PyValidator):
 		path = window.GetPath()
 		
 		if not os.path.isdir(path):
-			if not wx.Validator_IsSilent(): wx.Bell()
+			if not wx.Validator.IsSilent(): wx.Bell()
 			window.GetTextCtrl().SetFocus()
 			window.GetTextCtrl().SetSelection(0, len(path))
 			window.Refresh()

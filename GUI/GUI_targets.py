@@ -2241,7 +2241,7 @@ class target_point_grid_validator(wx.PyValidator):
 			
 		
 		if error:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
 			window.SetFocus()
 			window.Refresh()

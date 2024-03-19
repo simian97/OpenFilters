@@ -1525,7 +1525,7 @@ class rugate_grid_validator(wx.PyValidator):
 						window.SelectBlock(row, col, row, col, True)
 		
 		if error:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
 			window.SetFocus()
 			window.Refresh()

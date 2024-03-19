@@ -3578,7 +3578,7 @@ class properties_dialog_validator(wx.PyValidator):
 		y_to = float(parent.y_to_box.GetValue())
 		
 		if not x_from < x_to:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
 			parent.x_to_box.SetFocus()
 			parent.x_to_box.SetSelection(0, len(parent.x_to_box.GetValue()))
@@ -3586,7 +3586,7 @@ class properties_dialog_validator(wx.PyValidator):
 			return False
 		
 		if not y_from < y_to:
-			if not wx.Validator_IsSilent():
+			if not wx.Validator.IsSilent():
 				wx.Bell()
 			parent.y_to_box.SetFocus()
 			parent.y_to_box.SetSelection(0, len(parent.y_to_box.GetValue()))
